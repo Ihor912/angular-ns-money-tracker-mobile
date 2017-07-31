@@ -1,0 +1,13 @@
+.DS_Store
+.vscode
+*.js.map
+app/**/*.js
+hooks/
+node_modules/
+platforms/
+app/cost/*.js
+
+app/tns_modules/
+
+.idea/
+mkmf.log
