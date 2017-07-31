@@ -1,4 +1,0 @@
-#Mon Jul 31 20:08:04 EEST 2017
-base.0=/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/build/intermediates/transforms/dex/F0/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/build/intermediates/transforms/dex/F0/debug/folders/1000/1f/main/classes.dex
