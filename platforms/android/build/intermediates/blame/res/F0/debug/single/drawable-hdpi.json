@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/build/intermediates/res/merged/F0/debug/drawable-hdpi/icon.png",
+        "source": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/src/main/res/drawable-hdpi/icon.png"
+    },
+    {
+        "merged": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/build/intermediates/res/merged/F0/debug/drawable-hdpi/background.png",
+        "source": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/src/main/res/drawable-hdpi/background.png"
+    },
+    {
+        "merged": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/build/intermediates/res/merged/F0/debug/drawable-hdpi/logo.png",
+        "source": "/Users/igor9/Projects/NativeScript/MoneyTracker/platforms/android/src/main/res/drawable-hdpi/logo.png"
+    }
+]
