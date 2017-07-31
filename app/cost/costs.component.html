@@ -1,0 +1,11 @@
+<ActionBar title="Last Costs" class="action-bar">
+</ActionBar>
+
+<StackLayout class="page">
+    <ListView [items]="costs" class="list-group">
+        <ng-template let-item="item">
+            <Label [nsRouterLink]="['/item', item.id]" [text]="item.quantity"
+                class="list-group-item"></Label>
+        </ng-template>
+    </ListView>
+</StackLayout>
