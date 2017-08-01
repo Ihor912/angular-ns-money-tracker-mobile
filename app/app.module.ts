@@ -1,11 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
-
-import { CostService } from "./cost/cost.service";
-import { CostsComponent } from "./cost/costs.component";
-import { CostDetailComponent } from "./cost/cost-detail.component";
+import { CostModule } from "./cost/cost.module";
 
 @NgModule({
     bootstrap: [
@@ -13,15 +11,13 @@ import { CostDetailComponent } from "./cost/cost-detail.component";
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        CostModule
     ],
     declarations: [
-        AppComponent,
-        CostsComponent,
-        CostDetailComponent
+        AppComponent
     ],
     providers: [
-        CostService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

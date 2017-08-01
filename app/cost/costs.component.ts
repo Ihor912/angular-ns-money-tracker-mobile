@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { TextField } from "ui/text-field";
 
 import { Cost } from "./cost";
 import { CostService } from "./cost.service";
@@ -7,13 +8,37 @@ import { CostService } from "./cost.service";
     selector: "costs",
     moduleId: module.id,
     templateUrl: "./costs.component.html",
+    styleUrls: ["./cost.component.css"]
 })
 export class CostsComponent implements OnInit {
     costs: Cost[];
+    newCost: string = '';
+
+    @ViewChild("newCostTextField") newCostTextField: ElementRef;
 
     constructor(private costService: CostService) { }
 
     ngOnInit(): void {
         this.costs = this.costService.getCosts();
+    }
+
+    add() {
+        if (this.newCost.trim() === "") {
+            alert("Enter a grocery item");
+            return;
+        }
+
+        // Dismiss the keyboard
+        let textField = <TextField>this.newCostTextField.nativeElement;
+        textField.dismissSoftInput();
+
+        let cost:Cost = new Cost();
+        cost.id = this.costs.length;
+        cost.quantity = Number(this.newCost);
+        cost.type = "TestType";
+
+        this.costService.addCost(cost);
+        this.costs.push(cost);
+        this.newCost = "";
     }
 }

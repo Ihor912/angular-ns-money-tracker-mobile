@@ -1,11 +1,31 @@
-<ActionBar title="Last Costs" class="action-bar">
+<ActionBar title="Last Costs" 
+           class="action-bar">
 </ActionBar>
 
-<StackLayout class="page">
-    <ListView [items]="costs" class="list-group">
+<StackLayout class="page"
+             orientation="vertical">
+    <GridLayout row="0" 
+                columns="*, 50" 
+                class="add-bar">
+        <TextField #newCostTextField
+                   [(ngModel)]="newCost"
+                   hint="Enter a cost item" 
+                   col="0"></TextField>
+        <!-- <Image src="res://add" 
+               col="1"
+               (tap)="add()"></Image> -->
+        <Label col="1"
+               text="Add"
+               (tap)="add()"
+               class="list-header-button"></Label>
+    </GridLayout>
+    <ListView row="1"
+              [items]="costs" 
+              class="list-group">
         <ng-template let-item="item">
-            <Label [nsRouterLink]="['/cost', item.id]" [text]="item.quantity"
-                class="list-group-item"></Label>
+            <Label [nsRouterLink]="['/cost', item.id]" 
+                   [text]="item.quantity"
+                   class="list-group-item"></Label>
         </ng-template>
     </ListView>
 </StackLayout>
