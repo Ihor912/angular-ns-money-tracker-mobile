@@ -20,7 +20,7 @@
                class="list-header-button"></Label>
     </GridLayout>
     <ListView row="1"
-              [items]="costs" 
+              [items]="costService.costsListObservable | async" 
               class="list-group">
         <ng-template let-item="item">
             <Label [nsRouterLink]="['/cost', item.id]" 

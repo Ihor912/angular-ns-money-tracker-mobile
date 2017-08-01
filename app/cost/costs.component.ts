@@ -11,7 +11,6 @@ import { CostService } from "./cost.service";
     styleUrls: ["./cost.component.css"]
 })
 export class CostsComponent implements OnInit {
-    costs: Cost[];
     newCost: string = '';
 
     @ViewChild("newCostTextField") newCostTextField: ElementRef;
@@ -19,7 +18,11 @@ export class CostsComponent implements OnInit {
     constructor(private costService: CostService) { }
 
     ngOnInit(): void {
-        this.costs = this.costService.getCosts();
+        // this.costService.costsListObservable.subscribe((costs) => {
+        //     if(costs) {
+        //         this.costs = costs;
+        //     }
+        // });
     }
 
     add() {
@@ -33,12 +36,11 @@ export class CostsComponent implements OnInit {
         textField.dismissSoftInput();
 
         let cost:Cost = new Cost();
-        cost.id = this.costs.length;
+        cost.id = 234;
         cost.quantity = Number(this.newCost);
         cost.type = "TestType";
 
         this.costService.addCost(cost);
-        this.costs.push(cost);
         this.newCost = "";
     }
 }
