@@ -23,9 +23,17 @@
               [items]="costService.costsListObservable | async" 
               class="list-group">
         <ng-template let-item="item">
-            <Label [nsRouterLink]="['/cost', item.id]" 
-                   [text]="item.quantity"
-                   class="list-group-item"></Label>
+            <GridLayout row="0" 
+                        columns="*, auto, 10">
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.quantity"
+                       class="list-group-item"
+                       col="0"></Label>
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.type"
+                       class="list-tag-item"
+                       col="1"></Label>
+            </GridLayout>
         </ng-template>
     </ListView>
 </StackLayout>

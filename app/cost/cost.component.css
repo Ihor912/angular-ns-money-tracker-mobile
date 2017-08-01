@@ -6,3 +6,9 @@
 .add-bar {
     height: 60;
 }
+
+.list-tag-item {
+    vertical-align: middle;
+    background-color: darkslategray;
+    color: aliceblue;
+}
