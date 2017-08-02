@@ -1,0 +1,17 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" [text]="title"></Label>
+</ActionBar>
+
+<TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
+    <StackLayout *tabItem="{title: 'Costs', iconSource: getIconSource('costs')}">
+        <costs></costs>
+    </StackLayout>
+
+    <StackLayout *tabItem="{title: 'Calendar View', iconSource: getIconSource('costs')}">
+        
+    </StackLayout>
+    
+    <StackLayout *tabItem="{title: 'Charts View', iconSource: getIconSource('costs')}">
+        
+    </StackLayout>
+</TabView>

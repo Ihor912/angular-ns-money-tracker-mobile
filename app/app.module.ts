@@ -3,7 +3,10 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
-import { CostModule } from "./cost/cost.module";
+import { CostModule } from "./tabs/cost/cost.module";
+
+import { TabsComponent } from "./tabs/tabs.component";
+import { CostsComponent } from "./tabs/cost/costs.component";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +18,9 @@ import { CostModule } from "./cost/cost.module";
         CostModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        TabsComponent,
+        CostsComponent
     ],
     providers: [
     ],

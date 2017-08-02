@@ -1,10 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { AppRoutingModule } from "../app.routing";
+import { AppRoutingModule } from "../../app.routing";
 import { NativeScriptFormsModule } from "nativescript-angular/forms"
 
 import { CostService } from "./cost.service";
-import { CostsComponent } from "./costs.component";
 import { CostDetailComponent } from "./detail/cost-detail.component";
 import { CostEditComponent } from "./edit/cost-edit.component";
 
@@ -15,7 +14,6 @@ import { CostEditComponent } from "./edit/cost-edit.component";
         NativeScriptFormsModule
     ],
     declarations: [
-        CostsComponent,
         CostDetailComponent,
         CostEditComponent
     ],
