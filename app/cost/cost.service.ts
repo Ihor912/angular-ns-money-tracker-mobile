@@ -42,4 +42,13 @@ export class CostService {
         activeCosts.push(newCost);
         this.costsListSource.next(activeCosts);
     }
+
+    deleteCost(costForDelete: Cost) {
+        let activeCosts = this.costsListSource.getValue();
+        var index = activeCosts.indexOf(costForDelete);
+        activeCosts.splice(index, 1);
+        this.costsListSource.next(activeCosts);
+
+        alert(costForDelete.quantity + " removed!");
+    }
 }

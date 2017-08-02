@@ -30,8 +30,6 @@ export class CostsComponent implements OnInit {
             alert("Enter a grocery item");
             return;
         }
-
-        // Dismiss the keyboard
         let textField = <TextField>this.newCostTextField.nativeElement;
         textField.dismissSoftInput();
 

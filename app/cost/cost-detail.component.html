@@ -1,5 +1,12 @@
 <ActionBar title="Details" 
-           class="action-bar"></ActionBar>
+           class="action-bar">
+    <ActionItem (tap)="onEdit()"
+        ios.systemIcon="2" ios.position="right"
+        text="Edit" android.position="popup"></ActionItem>
+    <ActionItem (tap)="onDelete()"
+        ios.systemIcon="16" ios.position="right"
+        text="Delete" android.position="popup"></ActionItem>
+</ActionBar>
 
 <StackLayout orientation="vertical"
              class="page">
@@ -7,6 +14,6 @@
         <Label class="h2" 
                [text]="cost.quantity"></Label>
     </FlexboxLayout>
-    <Label class="tag-item small-tag-item" 
+    <Label class="tag-item small-tag-item"
            [text]="cost.type"></Label>
 </StackLayout>
