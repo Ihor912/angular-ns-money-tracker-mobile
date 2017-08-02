@@ -1,6 +1,14 @@
+ActionBar {
+    background-color: #7ada2f;
+    color: aliceblue;
+}
+
 .list-header-button {
     text-align: center;
     vertical-align: middle;
+    color: #7d7d7d;
+    font-weight: bold;
+    font-size: 16pt;
 }
 
 .add-bar {
@@ -9,6 +17,7 @@
 
 .list-tag-item {
     vertical-align: middle;
-    background-color: darkslategray;
+    background-color: #7ada2f;
     color: aliceblue;
+    border-radius: 1;
 }
