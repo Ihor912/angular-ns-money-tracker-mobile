@@ -5,8 +5,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms"
 
 import { CostService } from "./cost.service";
 import { CostsComponent } from "./costs.component";
-import { CostDetailComponent } from "./cost-detail.component";
-import { CostEditComponent } from "./cost-edit.component";
+import { CostDetailComponent } from "./detail/cost-detail.component";
+import { CostEditComponent } from "./edit/cost-edit.component";
 
 @NgModule({
     imports: [

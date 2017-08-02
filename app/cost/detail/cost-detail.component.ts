@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 
-import { Cost } from "./cost";
-import { CostService } from "./cost.service";
+import { Cost } from "../cost";
+import { CostService } from "../cost.service";
 
 @Component({
     selector: "details",
