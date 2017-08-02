@@ -36,7 +36,7 @@ export class CostsComponent implements OnInit {
         textField.dismissSoftInput();
 
         let cost:Cost = new Cost();
-        cost.id = 234;
+        cost.id = Math.random();
         cost.quantity = Number(this.newCost);
         cost.type = "TestType";
 
