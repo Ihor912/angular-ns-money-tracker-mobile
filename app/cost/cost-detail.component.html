@@ -1,7 +1,12 @@
-<ActionBar title="Details" class="action-bar"></ActionBar>
-<FlexboxLayout flexDirection="column" class="page">
+<ActionBar title="Details" 
+           class="action-bar"></ActionBar>
+
+<StackLayout orientation="vertical"
+             class="page">
     <FlexboxLayout class="m-15">
-        <Label class="h2" [text]="cost.quantity"></Label>
+        <Label class="h2" 
+               [text]="cost.quantity"></Label>
     </FlexboxLayout>
-    <Label class="h4" [text]="cost.type"></Label>
-</FlexboxLayout>
+    <Label class="tag-item small-tag-item" 
+           [text]="cost.type"></Label>
+</StackLayout>

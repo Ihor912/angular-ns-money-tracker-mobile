@@ -14,10 +14,3 @@ ActionBar {
 .add-bar {
     height: 60;
 }
-
-.list-tag-item {
-    vertical-align: middle;
-    background-color: #7ada2f;
-    color: aliceblue;
-    border-radius: 1;
-}

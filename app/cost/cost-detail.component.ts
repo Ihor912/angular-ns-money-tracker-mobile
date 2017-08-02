@@ -8,6 +8,7 @@ import { CostService } from "./cost.service";
     selector: "details",
     moduleId: module.id,
     templateUrl: "./cost-detail.component.html",
+    styleUrls: ["./cost-detail.component.css"]
 })
 export class CostDetailComponent implements OnInit {
     cost: Cost;
