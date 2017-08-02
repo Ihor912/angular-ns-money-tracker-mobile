@@ -1,1 +1,13 @@
 @import 'nativescript-theme-core/css/core.light.css';
+
+.tag-item {
+    vertical-align: middle;
+    background-color: #7ada2f;
+    color: aliceblue;
+    border-radius: 1;
+}
+
+.small-tag-item {
+    width: 80;
+    text-align: center;
+}
