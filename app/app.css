@@ -11,3 +11,8 @@
     width: 80;
     text-align: center;
 }
+
+.action-item {
+    padding-right: 10;
+    font-size: 16pt;
+}

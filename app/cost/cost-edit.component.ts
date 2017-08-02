@@ -6,13 +6,14 @@ import { Cost } from "./cost";
 import { CostService } from "./cost.service";
 
 @Component({
-    selector: "details",
+    selector: "cost-edit",
     moduleId: module.id,
-    templateUrl: "./cost-detail.component.html",
-    styleUrls: ["./cost-detail.component.css"]
+    templateUrl: "./cost-edit.component.html",
+    styleUrls: ["./cost-edit.component.css"]
 })
-export class CostDetailComponent implements OnInit {
+export class CostEditComponent implements OnInit {
     cost: Cost;
+    rollbackCost: Cost;
 
     constructor(
         private costService: CostService,
@@ -23,22 +24,22 @@ export class CostDetailComponent implements OnInit {
     ngOnInit(): void {
         const id = +this.route.snapshot.params["id"];
         this.cost = this.costService.getCost(id);
+        this.saveRollbackCost(this.cost);
     }
 
-    onEditButtonTap(): void{
-        this.routerExtensions.navigate(["/cost-edit", this.cost.id],
-        {
-            animated: true,
-            transition: {
-                name: "slideTop",
-                duration: 200,
-                curve: "ease"
-            }
-        });
+    saveRollbackCost(cost: Cost): void {
+        this.rollbackCost = new Cost();
+        this.rollbackCost.quantity = cost.quantity;
+        this.rollbackCost.type = cost.type;
     }
 
-    onDeleteButtonTap(): void{
-        this.costService.deleteCost(this.cost);
+    onCancelButtonTap(): void{
+        this.cost.quantity = this.rollbackCost.quantity;
+        this.cost.type = this.rollbackCost.type;
+        this.routerExtensions.back();
+    }
+    
+    onDoneButtonTap(): void{
         this.routerExtensions.back();
     }
 }

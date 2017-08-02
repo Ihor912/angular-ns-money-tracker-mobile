@@ -1,11 +1,19 @@
 <ActionBar title="Details" 
            class="action-bar">
-    <ActionItem (tap)="onEdit()"
-        ios.systemIcon="2" ios.position="right"
-        text="Edit" android.position="popup"></ActionItem>
-    <ActionItem (tap)="onDelete()"
-        ios.systemIcon="16" ios.position="right"
-        text="Delete" android.position="popup"></ActionItem>
+    <ActionItem (tap)="onEditButtonTap()"
+                ios.systemIcon="2" 
+                ios.position="right"
+                android.position="left">
+        <Label text="Edit" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem (tap)="onDeleteButtonTap()"
+                ios.systemIcon="16" 
+                ios.position="right" 
+                android.position="right">
+        <Label text="Delete" 
+               class="action-item"></Label>
+    </ActionItem>
 </ActionBar>
 
 <StackLayout orientation="vertical"

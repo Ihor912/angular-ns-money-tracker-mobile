@@ -4,11 +4,13 @@ import { Routes } from "@angular/router";
 
 import { CostsComponent } from "./cost/costs.component";
 import { CostDetailComponent } from "./cost/cost-detail.component";
+import { CostEditComponent } from "./cost/cost-edit.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/costs", pathMatch: "full" },
     { path: "costs", component: CostsComponent },
     { path: "cost/:id", component: CostDetailComponent },
+    { path: "cost-edit/:id", component: CostEditComponent }
 ];
 
 @NgModule({

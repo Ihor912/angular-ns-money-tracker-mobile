@@ -1,0 +1,34 @@
+<ActionBar title="Edit Cost" 
+           class="action-bar">
+    <ActionItem ios.position="left" 
+                android.position="left" 
+                (tap)="onCancelButtonTap()">
+        <Label text="Cancel" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem ios.position="right" 
+                android.position="right" 
+                (tap)="onDoneButtonTap()">
+        <Label text="Done" 
+               class="action-item"></Label>
+    </ActionItem>
+</ActionBar>
+
+<StackLayout orientation="vertical">
+    <GridLayout class="row"
+                columns="80, *"
+                rows="50">
+        <Label text="Quantity"
+            col="0"></Label>
+        <TextField [(ngModel)]="cost.quantity"
+                col="1"></TextField>
+    </GridLayout>
+    <GridLayout class="row"
+                columns="80, *"
+                rows="50">
+        <Label text="Tag"
+            col="0"></Label>
+        <TextField [(ngModel)]="cost.type"
+                col="1"></TextField>
+    </GridLayout>
+</StackLayout>

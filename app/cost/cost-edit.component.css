@@ -1,0 +1,12 @@
+ActionBar {
+    background-color: #7ada2f;
+    color: aliceblue;
+}
+
+.row {
+    padding: 10pt;
+}
+
+Label {
+    vertical-align: middle;
+}
