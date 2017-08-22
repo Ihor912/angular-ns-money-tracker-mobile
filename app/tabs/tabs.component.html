@@ -3,15 +3,15 @@
 </ActionBar>
 
 <TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
-    <StackLayout *tabItem="{title: 'Costs', iconSource: getIconSource('costs')}">
+    <StackLayout *tabItem="{title: 'Costs', iconSource: 'res://dollarsign'}">
         <costs></costs>
     </StackLayout>
 
-    <StackLayout *tabItem="{title: 'Calendar View', iconSource: getIconSource('costs')}">
+    <StackLayout *tabItem="{title: 'Calendar View', iconSource: 'res://calendar'}">
         
     </StackLayout>
     
-    <StackLayout *tabItem="{title: 'Charts', iconSource: getIconSource('costs')}">
+    <StackLayout *tabItem="{title: 'Charts', iconSource: 'res://chart'}">
         
     </StackLayout>
 </TabView>
