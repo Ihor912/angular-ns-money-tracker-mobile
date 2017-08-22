@@ -37,6 +37,7 @@ export class CostsComponent implements OnInit {
         cost.id = Math.random();
         cost.quantity = Number(this.newCost);
         cost.type = "TestType";
+        cost.changesDate = Date.now().toString();
 
         this.costService.addCost(cost);
         this.newCost = "";

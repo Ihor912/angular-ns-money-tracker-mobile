@@ -21,7 +21,9 @@
     <FlexboxLayout class="m-15">
         <Label class="h2" 
                [text]="cost.quantity"></Label>
-    </FlexboxLayout>
+        <Label class="item-details" 
+               [text]="cost.changesDate"></Label>       
+    </FlexboxLayout>        
     <Label class="tag-item small-tag-item"
            [text]="cost.type"></Label>
 </StackLayout>
