@@ -1,0 +1,16 @@
+<ActionBar title="Money Tracker " 
+            class="action-bar">
+</ActionBar>
+
+<StackLayout verticalAlignment="center" class="login-view" >
+        <StackLayout>
+            <Label text="Email" class="label font-weight-bold m-b-5"></Label>
+            <TextField keyboardType="email"autocorrect="false"></TextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <Label text="Password" class="label font-weight-bold m-b-5"></Label>
+            <TextField secure="true"></TextField>
+        </StackLayout>
+        <Button class="btn-login" text="Login" (tap)="login()"></Button>
+        <Label [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"></Label>
+</StackLayout>

@@ -7,6 +7,7 @@ import { CostModule } from "./tabs/cost/cost.module";
 
 import { TabsComponent } from "./tabs/tabs.component";
 import { CostsComponent } from "./tabs/cost/costs.component";
+import { LoginComponent} from "./login/login.component";
 
 @NgModule({
     bootstrap: [
@@ -20,7 +21,8 @@ import { CostsComponent } from "./tabs/cost/costs.component";
     declarations: [
         AppComponent,
         TabsComponent,
-        CostsComponent
+        CostsComponent,
+        LoginComponent
     ],
     providers: [
     ],
