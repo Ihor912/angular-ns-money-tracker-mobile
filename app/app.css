@@ -5,6 +5,8 @@
     background-color: #7ada2f;
     color: aliceblue;
     border-radius: 1;
+    width: 70;
+    text-align: center;
 }
 
 .small-tag-item {
