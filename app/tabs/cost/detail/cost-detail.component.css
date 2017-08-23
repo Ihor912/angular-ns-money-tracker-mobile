@@ -3,7 +3,7 @@ ActionBar {
     color: aliceblue;
 }
 
-.item-details {
+.date-label {
     text-align: right;
     margin-left: 60%;
     vertical-align: middle;
