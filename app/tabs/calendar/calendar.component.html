@@ -1,0 +1,9 @@
+
+<StackLayout orientation="vertical">
+   <calendar-date-range *ngIf="state == 'dateSelect'" 
+                        (sendDateChange)="onSendDateChange($event)"
+                        (stateChanged)="onDateRangeStateChangedHandler()"></calendar-date-range>
+   <calendar-date-range-cost-list *ngIf="state == 'dateFilteredList'"
+                                  (stateChanged)="onDateRangeCostListChangedHandler()"
+                                  [filteredCostList]="filteredCostList"></calendar-date-range-cost-list>
+</StackLayout>

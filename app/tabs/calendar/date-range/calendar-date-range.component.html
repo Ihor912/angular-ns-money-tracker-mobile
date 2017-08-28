@@ -1,0 +1,16 @@
+<StackLayout orientation="vertical" 
+             id="date-picker-from">     
+    <DatePicker (loaded)="onPickerLoaded($event)" 
+                (dateChange)="onStartDateChange($event)"></DatePicker>
+</StackLayout>
+<StackLayout orientation="vertical" 
+             id="date-picker-to"> 
+    <DatePicker (loaded)="onPickerLoaded($event)" 
+                (dateChange)="onEndDateChange($event)"></DatePicker>
+</StackLayout>
+    
+<StackLayout orientation="vertical">
+    <Button text="Filter" 
+            (tap)="onTap()" 
+            class="btn-filter"></Button>
+</StackLayout>

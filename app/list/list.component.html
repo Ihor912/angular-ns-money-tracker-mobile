@@ -1,0 +1,21 @@
+<ListView row="1"
+              [items]="items" 
+              class="list-group">
+        <ng-template let-item="item">
+            <GridLayout row="0" 
+                        columns="*, auto, 10">
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.quantity"
+                       class="list-group-item"
+                       col="0"></Label>
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.changesDate"
+                       class="list-group-item-date"
+                       col="0"></Label>       
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.type"
+                       class="tag-item"
+                       col="1"></Label>
+            </GridLayout>
+        </ng-template>
+</ListView>

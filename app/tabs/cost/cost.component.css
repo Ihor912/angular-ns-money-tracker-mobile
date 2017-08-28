@@ -11,14 +11,6 @@ ActionBar {
     font-size: 16pt;
 }
 
-.list-group-item-date {
-    text-align: right;
-    vertical-align: middle;
-    color: #7d7d7d;
-    font-size: 14pt;
-    padding-right: 20pt;
-}
-
 .add-bar {
     height: 60;
 }
