@@ -12,26 +12,31 @@ import { Cost } from "../cost/cost";
 })
 export class CalendarComponent {
     private state: string = 'dateSelect';
-    private costList:Array<Cost> = new Array<Cost>();
-    public filteredCostList:Array<Cost> = new Array<Cost>();
+    public filteredCosts: Cost[] = new Array<Cost>();
+    public allCosts: Cost[] = new Array<Cost>();
 
     constructor(private costService:CostService){}
+
+    ngOnInit() {
+        this.costService.costsListObservable.subscribe((costs) => {
+            this.allCosts = costs;
+        });
+    }
     
     onSendDateChange(args) {
         let startDateRange = new Date(args.startDate);
         let endDateRange = new Date(args.endDate);
+        let costs: Cost[] = new Array<Cost>();
 
-        this.costService.costsListObservable.subscribe((costs) => {
-            for (var index = 0; index < costs.length; index++) {
-                let currentCostDate = new Date(costs[index].changesDate);
-                if(currentCostDate >= startDateRange && currentCostDate <= endDateRange) {
-                    this.costList.push(costs[index]);
-                }
+        this.allCosts.forEach(cost => {
+            let currentCostDate = new Date(cost.changesDate);
+            if(currentCostDate >= startDateRange && currentCostDate <= endDateRange) {
+                costs.push(cost);
             }
-            this.filteredCostList = this.costList;
-            //this.costList.pop();
-            //this.filterDate.pop();
         });
+        this.filteredCosts = costs;
+        //this.costList.pop();
+        //this.filterDate.pop();
     }
 
     onDateRangeStateChangedHandler() {

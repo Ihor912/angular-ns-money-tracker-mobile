@@ -12,7 +12,7 @@ import { CostService } from "../../../tabs/cost/cost.service";
 export class CalendarDateRangeCostListComponent {
    
     @Output() stateChanged = new EventEmitter();
-    @Input() filteredCostList:Array<Cost>;
+    @Input() filteredCosts:Array<Cost>;
 
     onTap(){
         this.stateChanged.next("");

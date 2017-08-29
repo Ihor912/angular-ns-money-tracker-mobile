@@ -1,11 +1,11 @@
 <StackLayout orientation="vertical" 
              id="date-picker-from">     
-    <DatePicker (loaded)="onPickerLoaded($event)" 
+    <DatePicker (loaded)="onStartPickerLoaded($event)" 
                 (dateChange)="onStartDateChange($event)"></DatePicker>
 </StackLayout>
 <StackLayout orientation="vertical" 
              id="date-picker-to"> 
-    <DatePicker (loaded)="onPickerLoaded($event)" 
+    <DatePicker (loaded)="onEndPickerLoaded($event)" 
                 (dateChange)="onEndDateChange($event)"></DatePicker>
 </StackLayout>
     

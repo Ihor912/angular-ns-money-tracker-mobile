@@ -1,9 +1,9 @@
 <ListView row="1"
-              [items]="items" 
-              class="list-group">
+          [items]="items" 
+          class="list-group">
         <ng-template let-item="item">
             <GridLayout row="0" 
-                        columns="*, auto, 10">
+                        columns="*, 100, 100, 100">
                 <Label [nsRouterLink]="['/cost', item.id]" 
                        [text]="item.quantity"
                        class="list-group-item"
@@ -11,11 +11,15 @@
                 <Label [nsRouterLink]="['/cost', item.id]" 
                        [text]="item.changesDate"
                        class="list-group-item-date"
-                       col="0"></Label>       
+                       col="1"></Label>             
                 <Label [nsRouterLink]="['/cost', item.id]" 
                        [text]="item.type"
                        class="tag-item"
-                       col="1"></Label>
+                       col="2"></Label>    
+                <Label [nsRouterLink]="['/cost', item.id]" 
+                       [text]="item.isFavorite === true ? 'Favorite' : 'Not Favorite'"
+                       class="list-group-item-favorite"
+                       col="3"></Label>              
             </GridLayout>
         </ng-template>
 </ListView>

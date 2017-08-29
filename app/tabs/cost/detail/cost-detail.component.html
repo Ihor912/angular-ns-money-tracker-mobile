@@ -11,7 +11,7 @@
                 ios.systemIcon="16" 
                 ios.position="right" 
                 android.position="right">
-        <Label text="Delete" 
+        <Label text="Delete"
                class="action-item"></Label>
     </ActionItem>
 </ActionBar>
@@ -22,8 +22,13 @@
         <Label class="h2" 
                [text]="cost.quantity"></Label>
         <Label class="date-label" 
-               [text]="cost.changesDate"></Label>       
+               [text]="cost.changesDate"></Label>            
     </FlexboxLayout>        
     <Label class="tag-item small-tag-item"
            [text]="cost.type"></Label>
+
+    <Label class="favorite-label" 
+           [text]="cost.isFavorite === true ? 'Favorite' : 'Not Favorite'"
+           (tap)="onTap()"></Label>
+                      
 </StackLayout>

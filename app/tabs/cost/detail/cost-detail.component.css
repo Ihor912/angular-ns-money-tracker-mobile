@@ -10,3 +10,8 @@ ActionBar {
     font-size: 16pt;
     padding-top: 5pt;
 }
+
+.favorite-label {
+    text-align: center;
+    vertical-align: middle;
+}

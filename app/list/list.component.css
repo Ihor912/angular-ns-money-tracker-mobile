@@ -3,5 +3,8 @@
     vertical-align: middle;
     color: #7d7d7d;
     font-size: 14pt;
-    padding-right: 20pt;
+}
+
+.list-group-item-favorite {
+    vertical-align: middle;
 }

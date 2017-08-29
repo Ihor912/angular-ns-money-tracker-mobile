@@ -28,20 +28,29 @@ export class CalendarDateRangeComponent {
         this.sendDateChange.next(dateRange);
     }
 
-    onPickerLoaded(args) {
+    onStartPickerLoaded(args) {
         let datePicker = <DatePicker>args.object;
-        
-        datePicker.minDate = new Date(2017, 0, 1);
-        datePicker.maxDate = new Date(2017, 11, 12);
+        datePicker.date = new Date();
+        this._startDate = datePicker.date.toDateString();
+        console.log(this._startDate);
+    }
+    
+    onEndPickerLoaded(args) {
+        let datePicker = <DatePicker>args.object;
+        datePicker.date = new Date();
+        this._endDate = datePicker.date.toDateString();
+        console.log(this._endDate);
     }
 
     onStartDateChange(args) {
         let startDateStr: string = args.value;
         this._startDate = startDateStr;
+        console.log(this._startDate);
     }
 
     onEndDateChange(args) {
         let endDateStr: string = args.value;
         this._endDate = endDateStr;
+        console.log(this._endDate);
     }
 }
