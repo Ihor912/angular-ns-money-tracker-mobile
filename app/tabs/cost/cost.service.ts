@@ -39,7 +39,7 @@ export class CostService {
 
     addCost(newCost: Cost) {
         let activeCosts = this.costsListSource.getValue();
-        activeCosts.push(newCost);
+        activeCosts.unshift(newCost);
         this.costsListSource.next(activeCosts);
     }
 
