@@ -24,7 +24,8 @@
         <Label class="date-label" 
                [text]="cost.changesDate"></Label>            
     </FlexboxLayout>        
-    <Label class="tag-item small-tag-item"
+    <Label [nsRouterLink]="['/cost-edit', cost.id]"
+           class="tag-item small-tag-item"
            [text]="cost.type"></Label>
 
     <Label class="favorite-label" 
