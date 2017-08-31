@@ -37,7 +37,7 @@ export class CostsComponent implements OnInit {
         cost.id = Math.random();
         cost.quantity = Number(textField.text);
         cost.type = "TestType";
-        cost.changesDate = (new Date()).toDateString();
+        cost.changesDate = (new Date()).toISOString();
         cost.isFavorite = false;
 
         this.costService.addCost(cost);

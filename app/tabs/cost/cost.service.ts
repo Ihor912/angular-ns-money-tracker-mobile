@@ -15,9 +15,9 @@ export class CostService {
 
     private costs = new Array<Cost>(
         { id: 0, quantity: 310, type: "Products", changesDate: "Jul 01 2017", isFavorite: false },
-        { id: 1, quantity: 25, type: "Products", changesDate: "Aug 03 2017", isFavorite: false },
-        { id: 2, quantity: 127, type: "ForHome", changesDate: "Aug 29 2017", isFavorite: false },
-        { id: 3, quantity: 80, type: "Products", changesDate: "Aug 29 2017", isFavorite: false },
+        { id: 1, quantity: 25, type: "Products", changesDate: "Aug 25 2017", isFavorite: false },
+        { id: 2, quantity: 127, type: "ForHome", changesDate: "Aug 30 2017", isFavorite: false },
+        { id: 3, quantity: 80, type: "Products", changesDate: "Aug 29 2010", isFavorite: false },
         { id: 4, quantity: 32, type: "Products", changesDate: "Nov 13 2017", isFavorite: false },
         { id: 5, quantity: 235, type: "Products", changesDate: "Jan 31 2017", isFavorite: false },
         { id: 6, quantity: 98, type: "ForHome", changesDate: "Feb 20 2017", isFavorite: false },
