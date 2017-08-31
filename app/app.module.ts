@@ -5,7 +5,8 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { CostModule } from "./tabs/cost/cost.module";
 import { CalendarModule } from "./tabs/calendar/calendar.module"
-
+import { BudgetModule } from "./budget/budget.module";
+ 
 
 import { TabsComponent } from "./tabs/tabs.component";
 import { CostsComponent } from "./tabs/cost/costs.component";
@@ -16,6 +17,8 @@ import { CalendarComponent} from "./tabs/calendar/calendar.component";
 import { CalendarDateRangeComponent } from "./tabs/calendar/date-range/calendar-date-range.component";
 import { CalendarDateRangeCostListComponent } from "./tabs/calendar/date-range-cost-list/calendar-date-range-cost-list.component";
 import { ListComponent } from "./list/list.component";
+import { ChartComponent } from "./tabs/charts/chart.component";
+import { BudgetComponent } from "./budget/budget.component";
 
 @NgModule({
     bootstrap: [
@@ -25,7 +28,8 @@ import { ListComponent } from "./list/list.component";
         NativeScriptModule,
         AppRoutingModule,
         CostModule,
-        CalendarModule
+        CalendarModule,
+        BudgetModule
     ],
     declarations: [
         AppComponent,
@@ -36,7 +40,9 @@ import { ListComponent } from "./list/list.component";
         CalendarComponent,
         CalendarDateRangeComponent,
         CalendarDateRangeCostListComponent,
-        ListComponent
+        ListComponent,
+        ChartComponent,
+        BudgetComponent
     ],
     providers: [
     ],

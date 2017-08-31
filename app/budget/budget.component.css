@@ -1,0 +1,27 @@
+ActionBar {
+    background-color: #7ada2f;
+    color: aliceblue;
+}
+
+.budget-label {
+    padding-left: 25;
+    padding-top: 25;
+    font-size: 18pt;
+}
+
+.get-budget {
+    padding-top: 30;
+    margin-left: 15;
+    margin-right: 20;
+}
+
+.budget-item {
+    padding-left: 10;
+    padding-top: 25;
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.btn-back {
+    background-color: aliceblue;
+}

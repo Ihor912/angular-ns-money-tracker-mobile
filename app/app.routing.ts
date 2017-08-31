@@ -12,6 +12,8 @@ import { CalendarComponent } from "./tabs/calendar/calendar.component";
 import { CalendarDateRangeComponent } from "./tabs/calendar/date-range/calendar-date-range.component";
 import { CalendarDateRangeCostListComponent } from "./tabs/calendar/date-range-cost-list/calendar-date-range-cost-list.component";
 import { ListComponent } from "./list/list.component";
+import { ChartComponent } from "./tabs/charts/chart.component";
+import { BudgetComponent } from "./budget/budget.component"; 
 
 const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
     { path: "calendar", component: CalendarComponent },
     { path: "date-range", component: CalendarDateRangeComponent },
     { path: "date-range-cost-list", component: CalendarDateRangeCostListComponent },
-    { path: "list", component: ListComponent }
+    { path: "list", component: ListComponent },
+    { path: "charts", component: ChartComponent },
+    { path: "budget", component: BudgetComponent }
 ];
 
 @NgModule({

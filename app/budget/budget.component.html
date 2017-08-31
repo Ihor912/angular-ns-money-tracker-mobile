@@ -1,0 +1,55 @@
+<ActionBar title="Budget" 
+            class="action-bar">
+    <ActionItem (tap)="onEditButtonTap()"
+                ios.systemIcon="2" 
+                ios.position="right"
+                android.position="left"
+                *ngIf="state == 'read'">
+        <Label text="Edit" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem ios.position="right" 
+                android.position="right" 
+                (tap)="onSaveButtonTap()"
+                *ngIf="state == 'edit'">
+        <Label text="Save" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem ios.position="left" 
+                android.position="left" 
+                (tap)="onCancelButtonTap()"
+                *ngIf="state == 'edit'">
+        <Label text="Cancel" 
+               class="action-item"></Label>
+    </ActionItem>
+    <NavigationButton text="Go Back" 
+                      android.systemIcon="ic_menu_back" 
+                      (tap)="onBackTap()"
+                      class="btn-back"></NavigationButton>
+</ActionBar>
+
+<StackLayout>
+        <FlexboxLayout>     
+                <Label text="Budget for a mounth - "
+                       class="budget-label"
+                       *ngIf="state == 'read'"></Label>
+                <Label [text]="budgetService.budget"
+                       class="budget-item"
+                       *ngIf="state == 'read'"></Label>
+        </FlexboxLayout>
+
+        <TextField [text]="budgetService.budget"
+                   keyboardType="number"
+                   *ngIf="state == 'edit'"
+                   class="get-budget"
+                   #newBudgetTextField></TextField>
+        
+        <FlexboxLayout>  
+                <Label text="Budget for a day - "
+                       class="budget-label"></Label>
+                <Label [text]="budgetService.budgetForDay"
+                       class="budget-item"></Label>
+        </FlexboxLayout>
+</StackLayout>
+
+ 
