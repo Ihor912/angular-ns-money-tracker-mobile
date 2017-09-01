@@ -12,21 +12,20 @@ import { BudgetService } from "./budget.service";
 })
 export class BudgetComponent {
 
-    @ViewChild("newBudgetTextField") newBudgetTextField: ElementRef;
-
+    @ViewChild("editBudgetTextField") editBudgetTextField: ElementRef;
     private state: string = 'read';
 
     constructor(
         private routerExtensions: RouterExtensions,
         private budgetService: BudgetService
-    ) { }
+    ) {}
 
     onEditButtonTap() {
-        this.state = 'edit'; 
+        this.state = 'edit';
     }
 
     onSaveButtonTap() {
-        let textField = <TextField>this.newBudgetTextField.nativeElement;
+        let textField = <TextField>this.editBudgetTextField.nativeElement;
         textField.dismissSoftInput();
 
         if (textField.text.trim() === "") {
@@ -40,6 +39,7 @@ export class BudgetComponent {
 
     onCancelButtonTap() {
         this.state = 'read';
+        this.routerExtensions.back();
     }
 
     onBackTap() {

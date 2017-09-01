@@ -3,21 +3,27 @@ ActionBar {
     color: aliceblue;
 }
 
-.budget-label {
-    padding-left: 25;
-    padding-top: 25;
+.container {
+    padding: 30;
+}
+
+.info-label {
     font-size: 18pt;
 }
 
-.get-budget {
-    padding-top: 30;
-    margin-left: 15;
-    margin-right: 20;
+.info-edit-label {
+    font-size: 18pt;
 }
 
-.budget-item {
-    padding-left: 10;
-    padding-top: 25;
+TextField {
+    padding-top: 60;
+    width: 100%;
+    text-align: center;
+    font-size: 40pt;
+    border: 1pt solid silver;
+}
+
+.value-label {
     font-weight: bold;
     font-size: 18pt;
 }

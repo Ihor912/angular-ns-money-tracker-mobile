@@ -1,55 +1,60 @@
 <ActionBar title="Budget" 
-            class="action-bar">
-    <ActionItem (tap)="onEditButtonTap()"
+           class="action-bar">
+    <ActionItem *ngIf="state == 'read'"
+                (tap)="onEditButtonTap()"
                 ios.systemIcon="2" 
                 ios.position="right"
-                android.position="left"
-                *ngIf="state == 'read'">
+                android.position="left">
         <Label text="Edit" 
                class="action-item"></Label>
     </ActionItem>
-    <ActionItem ios.position="right" 
+    <ActionItem *ngIf="state == 'edit'"
+                ios.position="right" 
                 android.position="right" 
-                (tap)="onSaveButtonTap()"
-                *ngIf="state == 'edit'">
+                (tap)="onSaveButtonTap()">
         <Label text="Save" 
                class="action-item"></Label>
     </ActionItem>
-    <ActionItem ios.position="left" 
-                android.position="left" 
-                (tap)="onCancelButtonTap()"
-                *ngIf="state == 'edit'">
+    <ActionItem *ngIf="state == 'edit'"
+                ios.position="right" 
+                android.position="right" 
+                (tap)="onCancelButtonTap()">
         <Label text="Cancel" 
                class="action-item"></Label>
     </ActionItem>
-    <NavigationButton text="Go Back" 
-                      android.systemIcon="ic_menu_back" 
+    <NavigationButton text="Go Back"
+                      android.systemIcon="ic_menu_back"
                       (tap)="onBackTap()"
                       class="btn-back"></NavigationButton>
 </ActionBar>
 
-<StackLayout>
-        <FlexboxLayout>     
+<StackLayout orientation="vertical"
+             class="container">
+        <StackLayout *ngIf="state == 'read'"
+                     orientation="horizontal">
                 <Label text="Budget for a mounth - "
-                       class="budget-label"
-                       *ngIf="state == 'read'"></Label>
+                       class="info-label"></Label>
                 <Label [text]="budgetService.budget"
-                       class="budget-item"
-                       *ngIf="state == 'read'"></Label>
-        </FlexboxLayout>
+                       class="value-label"></Label>
+        </StackLayout>
 
-        <TextField [text]="budgetService.budget"
-                   keyboardType="number"
-                   *ngIf="state == 'edit'"
-                   class="get-budget"
-                   #newBudgetTextField></TextField>
-        
-        <FlexboxLayout>  
+        <StackLayout *ngIf="state == 'read'"
+                     orientation="horizontal">  
                 <Label text="Budget for a day - "
-                       class="budget-label"></Label>
+                       class="info-label"></Label>
                 <Label [text]="budgetService.budgetForDay"
-                       class="budget-item"></Label>
-        </FlexboxLayout>
+                       class="value-label"></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="state == 'edit'"
+                     orientation="vertical">
+                <Label text="Budget for a mounth:"
+                       class="info-edit-label"></Label>
+                <TextField [text]="budgetService.budget"
+                           keyboardType="number"
+                           #editBudgetTextField
+                           keyboardType="number"></TextField>
+        </StackLayout>
 </StackLayout>
 
  
