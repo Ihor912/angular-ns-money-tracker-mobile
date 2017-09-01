@@ -20,7 +20,6 @@ TextField {
     width: 100%;
     text-align: center;
     font-size: 40pt;
-    border: 1pt solid silver;
 }
 
 .value-label {

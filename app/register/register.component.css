@@ -1,11 +1,9 @@
-.register-view
-{
+.container {
     padding-left: 50;
     padding-right: 50;
 }
  
-.btn-register
-{
+.btn-register {
     background-color: #7ada2f;  
     color: aliceblue;
 }

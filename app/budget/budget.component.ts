@@ -39,7 +39,6 @@ export class BudgetComponent {
 
     onCancelButtonTap() {
         this.state = 'read';
-        this.routerExtensions.back();
     }
 
     onBackTap() {

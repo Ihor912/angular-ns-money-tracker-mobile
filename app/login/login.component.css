@@ -1,11 +1,14 @@
-.login-view
-{
+.container {
    padding-left: 40;
    padding-right: 40;
 }
 
-.btn-login
-{
+.group {
+    padding: 5pt;
+}
+
+.btn-login {
     background-color: #7ada2f;  
     color: aliceblue;
+    margin-bottom: 7pt;
 }
