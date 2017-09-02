@@ -1,15 +1,12 @@
-#date-picker-from
-{
+#date-picker-from {
     height: 200;
 }
 
-#date-picker-to
-{
+#date-picker-to {
     height: 200;
 }
 
-.btn-filter
-{
+.btn-filter {
     margin-left: 75;
     margin-right: 75;
     background-color: #7ada2f;
