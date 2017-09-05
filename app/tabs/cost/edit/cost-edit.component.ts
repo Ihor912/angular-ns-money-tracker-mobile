@@ -31,15 +31,23 @@ export class CostEditComponent implements OnInit {
         this.rollbackCost = new Cost();
         this.rollbackCost.quantity = cost.quantity;
         this.rollbackCost.type = cost.type;
+        this.rollbackCost.changesDate = cost.changesDate;
     }
 
     onCancelButtonTap(): void{
         this.cost.quantity = this.rollbackCost.quantity;
         this.cost.type = this.rollbackCost.type;
+        this.cost.changesDate = this.rollbackCost.changesDate
         this.routerExtensions.back();
     }
     
     onDoneButtonTap(): void{
+        let date = new Date().toLocaleDateString();
+        this.cost.changesDate = this.formatDateString(date);
         this.routerExtensions.back();
+    }
+
+    private formatDateString(dateString:string):string {
+        return (new Date(dateString)).toDateString().slice(4);
     }
 }

@@ -1,0 +1,32 @@
+ActionBar {
+    background-color: #7ada2f;
+    color: aliceblue;
+}
+
+.container {
+    padding: 30;
+}
+
+.info-label {
+    font-size: 18pt;
+}
+
+.info-edit-label {
+    font-size: 18pt;
+}
+
+TextField {
+    padding-top: 60;
+    width: 100%;
+    text-align: center;
+    font-size: 40pt;
+}
+
+.value-label {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.btn-back {
+    background-color: aliceblue;
+}

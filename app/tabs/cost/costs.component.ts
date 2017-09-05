@@ -11,7 +11,6 @@ import { CostService } from "./cost.service";
     styleUrls: ["./cost.component.css"]
 })
 export class CostsComponent implements OnInit {
-    newCost: string = '';
 
     @ViewChild("newCostTextField") newCostTextField: ElementRef;
 
@@ -26,19 +25,22 @@ export class CostsComponent implements OnInit {
     }
 
     add() {
-        if (this.newCost.trim() === "") {
-            alert("Enter a grocery item");
-            return;
-        }
         let textField = <TextField>this.newCostTextField.nativeElement;
         textField.dismissSoftInput();
 
+        if (textField.text.trim() === "") {
+            alert("Incorrect Value");
+            return;
+        }
+
         let cost:Cost = new Cost();
         cost.id = Math.random();
-        cost.quantity = Number(this.newCost);
+        cost.quantity = Number(textField.text);
         cost.type = "TestType";
+        cost.changesDate = (new Date()).toISOString();
+        cost.isFavorite = false;
 
         this.costService.addCost(cost);
-        this.newCost = "";
+        textField.text = "";
     }
 }

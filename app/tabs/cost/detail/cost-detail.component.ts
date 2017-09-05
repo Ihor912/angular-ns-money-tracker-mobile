@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 
@@ -13,7 +13,7 @@ import { CostService } from "../cost.service";
 })
 export class CostDetailComponent implements OnInit {
     cost: Cost;
-
+    
     constructor(
         private costService: CostService,
         private route: ActivatedRoute,
@@ -40,5 +40,9 @@ export class CostDetailComponent implements OnInit {
     onDeleteButtonTap(): void{
         this.costService.deleteCost(this.cost);
         this.routerExtensions.back();
+    }
+
+    onTap() {
+        this.cost.isFavorite = !this.cost.isFavorite;
     }
 }

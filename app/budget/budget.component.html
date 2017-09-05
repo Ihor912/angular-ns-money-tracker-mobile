@@ -1,0 +1,59 @@
+<ActionBar title="Budget" 
+           class="action-bar">
+    <ActionItem *ngIf="state == 'read'"
+                (tap)="onEditButtonTap()"
+                ios.systemIcon="2" 
+                ios.position="right"
+                android.position="left">
+        <Label text="Edit" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem *ngIf="state == 'edit'"
+                ios.position="right" 
+                android.position="right" 
+                (tap)="onSaveButtonTap()">
+        <Label text="Save" 
+               class="action-item"></Label>
+    </ActionItem>
+    <ActionItem *ngIf="state == 'edit'"
+                ios.position="right" 
+                android.position="right" 
+                (tap)="onCancelButtonTap()">
+        <Label text="Cancel" 
+               class="action-item"></Label>
+    </ActionItem>
+    <NavigationButton text="Go Back"
+                      android.systemIcon="ic_menu_back"
+                      (tap)="onBackTap()"
+                      class="btn-back"></NavigationButton>
+</ActionBar>
+
+<StackLayout orientation="vertical"
+             class="container">
+        <StackLayout *ngIf="state == 'read'"
+                     orientation="horizontal">
+                <Label text="Budget for a mounth - "
+                       class="info-label"></Label>
+                <Label [text]="budgetService.budget"
+                       class="value-label"></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="state == 'read'"
+                     orientation="horizontal">  
+                <Label text="Budget for a day - "
+                       class="info-label"></Label>
+                <Label [text]="budgetService.budgetForDay"
+                       class="value-label"></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="state == 'edit'"
+                     orientation="vertical">
+                <Label text="Budget for a mounth:"
+                       class="info-edit-label"></Label>
+                <TextField [text]="budgetService.budget"
+                           keyboardType="number"
+                           #editBudgetTextField></TextField>
+        </StackLayout>
+</StackLayout>
+
+ 
