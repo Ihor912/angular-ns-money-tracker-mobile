@@ -1,7 +1,7 @@
-## money-tracker
+## money-tracker-mobile
 Money Tracker is a mobile app for android and ios to manage and save your money.
 
-#### Technologies: NativeScript, Angular2, TypeScript, RxJS.
+#### Technologies: NativeScript, Angular2, TypeScript, RxJS, Firebase.
 
 ```
 tns run ios
