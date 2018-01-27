@@ -1,27 +1,55 @@
-import { Component, OnInit } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-import * as ApplicationSettings from "application-settings";
+import { Component } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular/router';
+import firebase = require('nativescript-plugin-firebase');
+
+import { User } from '../common/protocol';
+
  
 @Component({
     moduleId: module.id,
-    selector: "ns-login",
+    selector: "login",
     templateUrl: "login.component.html",
     styleUrls: ["login.component.css"]
 })
-export class LoginComponent implements OnInit {
- 
-    public input: any;
- 
+export class LoginComponent {
+    private user: User;
+    private form: any = {};
+    private isLoading: boolean = false;
+
     public constructor(private router: RouterExtensions) {
-        this.input = {
-            "email": "",
-            "password": ""
-        }
     }
- 
-    public ngOnInit() {}
- 
-    public login() {
-         this.router.navigate(["/tabs"], { clearHistory: true });
+
+    ngOnInit() {
+        this.autoLogin();
+    }
+    
+    private login() {
+        this.isLoading = true;
+        firebase.login({
+            type: firebase.LoginType.PASSWORD, 
+            email: this.form.email,  // 'ihor.khomiak1@test.com', 
+            password: this.form.password  // '123456'
+        })
+        .then((user) => {
+            this.isLoading = false;
+            this.user = user as User;
+            alert("Logged in as " + user['email']);
+            this.router.navigate(["/tabs"], { clearHistory: true });
+        }, (error) => {
+            this.isLoading = false;
+            alert("Error: " + error);
+        });
+    }
+
+    private autoLogin() {
+        // to immediately re-login the user when he re-visits app
+        const that = this;
+        firebase.init({
+            onAuthStateChanged: function(data) {
+                if (data.loggedIn) {
+                    that.router.navigate(["/tabs"], { clearHistory: true })
+                }
+            }
+        });
     }
 }

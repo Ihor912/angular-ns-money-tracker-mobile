@@ -3,23 +3,51 @@
 </ActionBar>
 
 <StackLayout verticalAlignment="center" 
-             class="container" >
-        <Label text="Name" 
-               class="label font-weight-bold m-b-5"></Label>
-        <TextField></TextField>
-        <Label text="Surname" 
-               class="label font-weight-bold m-b-5"></Label>
-        <TextField></TextField>
-        <Label text="Login" 
-               class="label font-weight-bold m-b-5"></Label>
-        <TextField></TextField>
-        <Label text="Email" 
-               class="label font-weight-bold m-b-5"></Label>
-        <TextField></TextField>
-        <Label text="Password" 
-               class="label font-weight-bold m-b-5"></Label>
-        <TextField secure="true"></TextField>
-        <Button  [nsRouterLink]="['']" 
-                 text="Register" 
-                 class="btn-register"></Button>
+             class="container">
+    <ActivityIndicator [busy]="isLoading" 
+                       [visibility]="isLoading ? 'visible' : 'collapse'" 
+                       horizontalAlignment="center" 
+                       verticalAlignment="center"></ActivityIndicator>
+    <TextField [(ngModel)]="form.email"
+               #email="ngModel"
+               hint="Email"
+               keyboardType="email"
+               autocorrect="false"
+               minlength="1" 
+               required></TextField>
+    <StackLayout *ngIf="email.errors && email.dirty && email.touched">
+        <Label *ngIf="email.errors.required" 
+                text="- An email field is required -"></Label>
+        <Label *ngIf="email.errors.minlength" 
+                text="- Email must be longer than 1 characters -"></Label>
+    </StackLayout>
+    <TextField [(ngModel)]="form.name"
+               #name="ngModel"
+               hint="Name"
+               autocorrect="false"
+               minlength="1" 
+               required></TextField>
+    <StackLayout *ngIf="name.errors && name.dirty && name.touched">
+        <Label *ngIf="name.errors.required" 
+                text="- An name field is required -"></Label>
+        <Label *ngIf="name.errors.minlength" 
+                text="- Name field must be longer than 1 characters -"></Label>
+    </StackLayout>
+    <TextField [(ngModel)]="form.password"
+               #password="ngModel"
+               hint="Password"
+               secure="true"
+               hint="Password"
+               minlength="1" 
+               required></TextField>
+    <StackLayout *ngIf="password.errors && password.dirty && password.touched">
+        <Label *ngIf="password.errors.required" 
+                text="- An password field is required -"></Label>
+        <Label *ngIf="password.errors.minlength" 
+                text="- Password field must be longer than 1 characters -"></Label>
+    </StackLayout>
+    <Button [nsRouterLink]="['']"
+            text="Register" 
+            (tap)="onRegister()"
+            class="btn-register"></Button>
 </StackLayout>

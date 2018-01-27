@@ -1,26 +1,37 @@
-import { Component, OnInit } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-import * as ApplicationSettings from "application-settings";
+import { Component } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular/router';
+import firebase = require('nativescript-plugin-firebase');
+
+import { User } from '../common/protocol';
 
 @Component({
     moduleId: module.id,
-    selector: "ns-register",
+    selector: "register",
     templateUrl: "register.component.html",
     styleUrls: ["register.component.css"]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+    private form: any = {};
+    private isLoading: boolean = false;
 
-    public input: any;
-    
     public constructor(private router: RouterExtensions) {
-        this.input = {
-            "name": "",
-            "surname": "",
-            "login": "",
-            "email": "",
-            "password": "",
-        }
     }
 
-       public ngOnInit() {}
+    public onRegister() {
+        this.isLoading = true;
+        firebase.createUser({
+            email: this.form.email,  // 'ihor.khomiak1@test.com', 
+            password: this.form.password  // '123456'
+        })
+        .then(
+            (user) =>{
+                this.isLoading = false;
+                alert("Created new user!");
+            }, 
+            (error) => {
+                this.isLoading = false;
+                alert("Error: " + error);
+            }
+        );
+    }
 }

@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { TextField } from "ui/text-field";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { TextField } from 'ui/text-field';
+import { RouterExtensions } from 'nativescript-angular/router';
 
-import { Cost } from "./cost";
-import { CostService } from "./cost.service";
+import { Cost } from './cost';
+import { CostService } from './cost.service';
+
+import firebase = require('nativescript-plugin-firebase');
 
 @Component({
     selector: "costs",
@@ -14,7 +17,7 @@ export class CostsComponent implements OnInit {
 
     @ViewChild("newCostTextField") newCostTextField: ElementRef;
 
-    constructor(private costService: CostService) { }
+    constructor(private router: RouterExtensions, private costService: CostService) { }
 
     ngOnInit(): void {
         // this.costService.costsListObservable.subscribe((costs) => {
@@ -42,5 +45,15 @@ export class CostsComponent implements OnInit {
 
         this.costService.addCost(cost);
         textField.text = "";
+    }
+
+    logout() {
+        firebase.logout()
+        .then(() => {
+            alert("Logged out successfully!");
+            this.router.navigate([""], { clearHistory: true });
+        }, (error) => {
+            alert("Error: " + error);
+        });
     }
 }

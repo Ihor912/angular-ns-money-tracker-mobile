@@ -11,3 +11,4 @@ app/tns_modules/
 
 .idea/
 mkmf.log
+*.json
