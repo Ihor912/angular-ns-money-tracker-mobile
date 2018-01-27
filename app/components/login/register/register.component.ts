@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
 
-import { User } from '../common/protocol';
-
 @Component({
     moduleId: module.id,
     selector: "register",

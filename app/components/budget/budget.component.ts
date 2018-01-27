@@ -1,8 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
-import { TextField } from "ui/text-field";
-import { RouterExtensions } from "nativescript-angular/router";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterExtensions } from 'nativescript-angular/router';
+import { TextField } from 'ui/text-field';
 
-import { BudgetService } from "./budget.service";
+import { BudgetService } from './budget.service';
 
 @Component({
    selector: "budget",

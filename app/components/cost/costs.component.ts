@@ -1,11 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TextField } from 'ui/text-field';
 import { RouterExtensions } from 'nativescript-angular/router';
+import firebase = require('nativescript-plugin-firebase');
+import { TextField } from 'ui/text-field';
 
 import { Cost } from './cost';
 import { CostService } from './cost.service';
-
-import firebase = require('nativescript-plugin-firebase');
 
 @Component({
     selector: "costs",

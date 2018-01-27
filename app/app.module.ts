@@ -1,22 +1,22 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
-import { NativeScriptFormsModule } from "nativescript-angular/forms"
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { BudgetComponent } from './budget/budget.component';
-import { BudgetModule } from './budget/budget.module';
-import { ListComponent } from './list/list.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { CalendarComponent } from './tabs/calendar/calendar.component';
-import { CalendarModule } from './tabs/calendar/calendar.module';
-import { CalendarDateRangeCostListComponent } from './tabs/calendar/date-range-cost-list/calendar-date-range-cost-list.component';
-import { CalendarDateRangeComponent } from './tabs/calendar/date-range/calendar-date-range.component';
-import { ChartComponent } from './tabs/charts/chart.component';
-import { CostModule } from './tabs/cost/cost.module';
-import { CostsComponent } from './tabs/cost/costs.component';
-import { TabsComponent } from './tabs/tabs.component';
+import { BudgetComponent } from './components/budget/budget.component';
+import { BudgetModule } from './components/budget/budget.module';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarModule } from './components/calendar/calendar.module';
+import { CalendarDateRangeCostListComponent } from './components/calendar/date-range-cost-list/calendar-date-range-cost-list.component';
+import { CalendarDateRangeComponent } from './components/calendar/date-range/calendar-date-range.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { CostModule } from './components/cost/cost.module';
+import { CostsComponent } from './components/cost/costs.component';
+import { ListComponent } from './components/list/list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/login/register/register.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 @NgModule({
     bootstrap: [

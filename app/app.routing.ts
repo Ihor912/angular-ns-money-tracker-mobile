@@ -1,19 +1,18 @@
-import { NgModule } from "@angular/core";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
+import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
-import { TabsComponent } from "./tabs/tabs.component";
-import { CostsComponent } from "./tabs/cost/costs.component";
-import { CostDetailComponent } from "./tabs/cost/detail/cost-detail.component";
-import { CostEditComponent } from "./tabs/cost/edit/cost-edit.component";
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./register/register.component";
-import { CalendarComponent } from "./tabs/calendar/calendar.component";
-import { CalendarDateRangeComponent } from "./tabs/calendar/date-range/calendar-date-range.component";
-import { CalendarDateRangeCostListComponent } from "./tabs/calendar/date-range-cost-list/calendar-date-range-cost-list.component";
-import { ListComponent } from "./list/list.component";
-import { ChartComponent } from "./tabs/charts/chart.component";
-import { BudgetComponent } from "./budget/budget.component"; 
+import { BudgetComponent } from './components/budget/budget.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarDateRangeCostListComponent } from './components/calendar/date-range-cost-list/calendar-date-range-cost-list.component';
+import { CalendarDateRangeComponent } from './components/calendar/date-range/calendar-date-range.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { CostDetailComponent } from './components/cost/detail/cost-detail.component';
+import { CostEditComponent } from './components/cost/edit/cost-edit.component';
+import { ListComponent } from './components/list/list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/login/register/register.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -26,7 +25,7 @@ const routes: Routes = [
     { path: "date-range", component: CalendarDateRangeComponent },
     { path: "date-range-cost-list", component: CalendarDateRangeCostListComponent },
     { path: "list", component: ListComponent },
-    { path: "charts", component: ChartComponent },
+    { path: "chart", component: ChartComponent },
     { path: "budget", component: BudgetComponent }
 ];
 

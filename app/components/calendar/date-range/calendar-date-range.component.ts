@@ -1,8 +1,5 @@
-import { Component, Output, EventEmitter } from "@angular/core";
-import { DatePicker } from "ui/date-picker";
-import { EventData } from "data/observable";
-
-import { DateRange } from "../../../common/protocol";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { DatePicker } from 'ui/date-picker';
 
 
 @Component({
