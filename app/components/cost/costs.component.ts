@@ -3,7 +3,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
 import { TextField } from 'ui/text-field';
 
-import { Cost } from './cost';
+import { Cost } from '../../common/protocol';
 import { CostService } from './cost.service';
 
 @Component({

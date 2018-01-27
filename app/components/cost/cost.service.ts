@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Rx from 'rxjs/Rx';
 
-import { Cost } from './cost';
+import { Cost } from '../../common/protocol';
 
 @Injectable()
 export class CostService {

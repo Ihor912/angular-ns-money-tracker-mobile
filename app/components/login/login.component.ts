@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
+import { User } from 'nativescript-plugin-firebase';
 
-import { User } from '../../common/protocol';
+import { Config } from '../../common/config';
 
  
 @Component({
@@ -12,7 +13,6 @@ import { User } from '../../common/protocol';
     styleUrls: ["login.component.css"]
 })
 export class LoginComponent {
-    private user: User;
     private form: any = {};
     private isLoading: boolean = false;
 
@@ -32,7 +32,7 @@ export class LoginComponent {
         })
         .then((user) => {
             this.isLoading = false;
-            this.user = user as User;
+            this.saveUserInfo(user);
             alert("Logged in as " + user['email']);
             this.router.navigate(["/tabs"], { clearHistory: true });
         }, (error) => {
@@ -47,9 +47,16 @@ export class LoginComponent {
         firebase.init({
             onAuthStateChanged: function(data) {
                 if (data.loggedIn) {
+                    that.saveUserInfo(data.user);
                     that.router.navigate(["/tabs"], { clearHistory: true })
                 }
             }
         });
+    }
+
+    private saveUserInfo(user: User) {
+        Config.saveEmail(user.email);
+        Config.saveUserName(user.name);
+        Config.saveUserUid(user.uid);
     }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular/router';
 
-import { Cost } from '../cost';
+import { Cost } from '../../../common/protocol';
 import { CostService } from '../cost.service';
 
 @Component({

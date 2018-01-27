@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Cost } from '../../../components/cost/cost';
+import { Cost } from '../../../common/protocol';
 
 @Component({
     selector: "calendar-date-range-cost-list",
