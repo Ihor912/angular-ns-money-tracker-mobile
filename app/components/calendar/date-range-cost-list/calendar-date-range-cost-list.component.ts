@@ -11,7 +11,7 @@ import { Cost } from '../../../common/protocol';
 export class CalendarDateRangeCostListComponent {
    
     @Output() stateChanged = new EventEmitter();
-    @Input() filteredCosts:Array<Cost>;
+    @Input() filteredCosts: Array<Cost>;
 
     onTap(){
         this.stateChanged.next("");

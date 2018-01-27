@@ -8,11 +8,8 @@ import { SelectedIndexChangedEventData, TabView } from 'tns-core-modules/ui/tab-
     templateUrl: "./tabs.component.html",
     styleUrls: ["./tabs.component.css"]
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent {
     private _title: string;
-
-    constructor() {}
-    ngOnInit(): void {}
 
     get title(): string {
         return this._title;

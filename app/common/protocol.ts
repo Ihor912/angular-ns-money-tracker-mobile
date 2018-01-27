@@ -8,5 +8,5 @@ export class Cost {
     quantity: number;
     type: string;
     changesDate: string;
-    isFavorite:boolean;
+    isFavorite: boolean;
 }

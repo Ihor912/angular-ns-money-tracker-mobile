@@ -47,7 +47,7 @@ export class CostEditComponent implements OnInit {
         this.routerExtensions.back();
     }
 
-    private formatDateString(dateString:string):string {
+    private formatDateString(dateString: string): string {
         return (new Date(dateString)).toDateString().slice(4);
     }
 }

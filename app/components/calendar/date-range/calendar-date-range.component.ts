@@ -9,8 +9,8 @@ import { DatePicker } from 'ui/date-picker';
     styleUrls: ["./calendar-date-range.component.css"]
 })
 export class CalendarDateRangeComponent {
-    private _startDate:string;
-    private _endDate:string;
+    private _startDate: string;
+    private _endDate: string;
 
     @Output() stateChanged = new EventEmitter();
     @Output() sendDateChange = new EventEmitter();

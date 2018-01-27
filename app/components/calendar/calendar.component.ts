@@ -15,10 +15,10 @@ export class CalendarComponent {
     public filteredCosts: Cost[] = new Array<Cost>();
     public allCosts: Cost[] = new Array<Cost>();
 
-    constructor(private costService:CostService){}
+    constructor(private costService: CostService){}
 
     ngOnInit() {
-        this.costService.costsListObservable.subscribe((costs) => {
+        this.costService.costs.subscribe((costs) => {
             this.allCosts = costs;
         });
     }

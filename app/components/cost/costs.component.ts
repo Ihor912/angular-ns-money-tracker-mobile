@@ -19,7 +19,7 @@ export class CostsComponent implements OnInit {
     constructor(private router: RouterExtensions, private costService: CostService) { }
 
     ngOnInit(): void {
-        // this.costService.costsListObservable.subscribe((costs) => {
+        // this.costService.costs.subscribe((costs) => {
         //     if(costs) {
         //         this.costs = costs;
         //     }
@@ -35,7 +35,7 @@ export class CostsComponent implements OnInit {
             return;
         }
 
-        let cost:Cost = new Cost();
+        let cost: Cost = new Cost();
         cost.id = Math.random();
         cost.quantity = Number(textField.text);
         cost.type = "TestType";

@@ -5,15 +5,15 @@ import { Cost } from '../../common/protocol';
 
 @Injectable()
 export class CostService {
-    private costsListSource: Rx.BehaviorSubject<Cost[]>;
-    private backing_costsListObservable: Rx.Observable<Cost[]>;
+    private _costsSource: Rx.BehaviorSubject<Cost[]>;
+    private _costs: Rx.Observable<Cost[]>;
 
     constructor() {
-        this.costsListSource = new Rx.BehaviorSubject<Cost[]>(this.costs);
-        this.backing_costsListObservable = this.costsListSource.asObservable();
+        this._costsSource = new Rx.BehaviorSubject<Cost[]>(this.costsCollection);
+        this._costs = this._costsSource.asObservable();
     }
 
-    private costs = new Array<Cost>(
+    private costsCollection = new Array<Cost>(
         { id: 0, quantity: 310, type: "Products", changesDate: "Jul 01 2017", isFavorite: false },
         { id: 1, quantity: 25, type: "Products", changesDate: "Aug 25 2017", isFavorite: false },
         { id: 2, quantity: 127, type: "ForHome", changesDate: "Aug 30 2017", isFavorite: false },
@@ -29,25 +29,25 @@ export class CostService {
         { id: 12, quantity: 78, type: "Products", changesDate: "April 04 2017", isFavorite: false }
     );
 
-    public get costsListObservable(): Rx.Observable<Cost[]> {
-        return this.backing_costsListObservable;
+    public get costs(): Rx.Observable<Cost[]> {
+        return this._costs;
     }
 
     getCost(id: number): Cost {
-        return this.costsListSource.getValue().filter(cost => cost.id === id)[0];
+        return this._costsSource.getValue().filter(cost => cost.id === id)[0];
     }
 
     addCost(newCost: Cost) {
-        let activeCosts = this.costsListSource.getValue();
+        let activeCosts = this._costsSource.getValue();
         activeCosts.unshift(newCost);
-        this.costsListSource.next(activeCosts);
+        this._costsSource.next(activeCosts);
     }
 
     deleteCost(costForDelete: Cost) {
-        let activeCosts = this.costsListSource.getValue();
+        let activeCosts = this._costsSource.getValue();
         var index = activeCosts.indexOf(costForDelete);
         activeCosts.splice(index, 1);
-        this.costsListSource.next(activeCosts);
+        this._costsSource.next(activeCosts);
 
         alert(costForDelete.quantity + " removed!");
     }
