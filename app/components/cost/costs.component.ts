@@ -5,6 +5,7 @@ import { TextField } from 'ui/text-field';
 
 import { Cost } from '../../common/protocol';
 import { CostService } from './cost.service';
+import { Config } from '../../common/config';
 
 @Component({
     selector: "costs",
@@ -19,11 +20,7 @@ export class CostsComponent implements OnInit {
     constructor(private router: RouterExtensions, private costService: CostService) { }
 
     ngOnInit(): void {
-        // this.costService.costs.subscribe((costs) => {
-        //     if(costs) {
-        //         this.costs = costs;
-        //     }
-        // });
+        this.costService.getCosts();
     }
 
     add() {
@@ -50,6 +47,7 @@ export class CostsComponent implements OnInit {
         firebase.logout()
         .then(() => {
             alert("Logged out successfully!");
+            Config.removeAllUserInfo();
             this.router.navigate([""], { clearHistory: true });
         }, (error) => {
             alert("Error: " + error);

@@ -32,7 +32,7 @@ export class LoginComponent {
         })
         .then((user) => {
             this.isLoading = false;
-            this.saveUserInfo(user);
+            Config.saveAllUserInfo(user);
             alert("Logged in as " + user['email']);
             this.router.navigate(["/tabs"], { clearHistory: true });
         }, (error) => {
@@ -47,16 +47,12 @@ export class LoginComponent {
         firebase.init({
             onAuthStateChanged: function(data) {
                 if (data.loggedIn) {
-                    that.saveUserInfo(data.user);
+                    Config.saveAllUserInfo(data.user);
                     that.router.navigate(["/tabs"], { clearHistory: true })
+                } else {
+                    Config.saveUserToken('');
                 }
             }
         });
-    }
-
-    private saveUserInfo(user: User) {
-        Config.saveEmail(user.email);
-        Config.saveUserName(user.name);
-        Config.saveUserUid(user.uid);
     }
 }

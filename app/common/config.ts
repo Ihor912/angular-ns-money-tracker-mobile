@@ -1,4 +1,5 @@
 import * as appSettings from 'application-settings';
+import { User } from 'nativescript-plugin-firebase';
 
 export class Config {
 
@@ -10,8 +11,8 @@ export class Config {
         this.Save("username", value);
     }
     
-    public static saveUserUid(value) {
-        this.Save("userUid", value);
+    public static saveUserToken(value) {
+        this.Save("token", value);
     }
 
     public static getEmail() {
@@ -22,8 +23,20 @@ export class Config {
         return this.GetString("username");
     }
 
-    public static getUserUid() {
-        return this.GetString("userUid");
+    public static getUserToken() {
+        return this.GetString("token");
+    }
+
+    public static saveAllUserInfo(user: User) {
+        Config.saveEmail(user.email);
+        Config.saveUserName(user.name);
+        Config.saveUserToken(user.uid);
+    }
+
+    public static removeAllUserInfo() {
+        Config.saveEmail('');
+        Config.saveUserName('');
+        Config.saveUserToken('');
     }
 
     private static Save(type: string, data: any){
