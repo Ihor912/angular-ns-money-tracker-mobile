@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
+import { AuthGuard } from './auth-guard.service';
 import { BudgetComponent } from './components/budget/budget.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarDateRangeCostListComponent } from './components/calendar/date-range-cost-list/calendar-date-range-cost-list.component';
@@ -15,8 +16,9 @@ import { RegisterComponent } from './components/login/register/register.componen
 import { TabsComponent } from './components/tabs/tabs.component';
 
 const routes: Routes = [
-    { path: "", component: LoginComponent },
-    { path: 'tabs', component: TabsComponent },
+    { path: "", redirectTo: "/tabs", pathMatch: "full" },
+    { path: 'tabs', component: TabsComponent, canActivate: [AuthGuard] },
+    { path: "login", component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     //{ path: "costs", component: CostsComponent },
     { path: "cost/:id", component: CostDetailComponent },
@@ -27,6 +29,10 @@ const routes: Routes = [
     { path: "list", component: ListComponent },
     { path: "chart", component: ChartComponent },
     { path: "budget", component: BudgetComponent }
+];
+
+export const authProviders = [
+    AuthGuard
 ];
 
 @NgModule({

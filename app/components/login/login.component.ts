@@ -19,10 +19,6 @@ export class LoginComponent {
     public constructor(private router: RouterExtensions) {
     }
 
-    ngOnInit() {
-        this.autoLogin();
-    }
-    
     private login() {
         this.isLoading = true;
         firebase.login({
@@ -33,26 +29,10 @@ export class LoginComponent {
         .then((user) => {
             this.isLoading = false;
             Config.saveAllUserInfo(user);
-            alert("Logged in as " + user['email']);
             this.router.navigate(["/tabs"], { clearHistory: true });
         }, (error) => {
             this.isLoading = false;
             alert("Error: " + error);
-        });
-    }
-
-    private autoLogin() {
-        // to immediately re-login the user when he re-visits app
-        const that = this;
-        firebase.init({
-            onAuthStateChanged: function(data) {
-                if (data.loggedIn) {
-                    Config.saveAllUserInfo(data.user);
-                    that.router.navigate(["/tabs"], { clearHistory: true })
-                } else {
-                    Config.saveUserToken('');
-                }
-            }
         });
     }
 }

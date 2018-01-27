@@ -3,7 +3,8 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule, authProviders } from './app.routing';
+import { Config } from './common/config';
 import { BudgetComponent } from './components/budget/budget.component';
 import { BudgetModule } from './components/budget/budget.module';
 import { CalendarComponent } from './components/calendar/calendar.component';
@@ -44,6 +45,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
         BudgetComponent
     ],
     providers: [
+        authProviders,
+        Config
     ],
     schemas: [
         NO_ERRORS_SCHEMA

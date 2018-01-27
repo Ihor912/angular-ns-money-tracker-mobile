@@ -39,6 +39,10 @@ export class Config {
         Config.saveUserToken('');
     }
 
+    public static isLoggedIn(): boolean {
+        return !!appSettings.getString("token");
+    }
+
     private static Save(type: string, data: any){
         if(typeof data === "string"){
             appSettings.setString(type, <string>data);
