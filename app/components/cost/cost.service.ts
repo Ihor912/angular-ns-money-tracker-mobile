@@ -1,75 +1,71 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import * as Rx from 'rxjs/Rx';
 
 import firebase = require('nativescript-plugin-firebase');
 import { Cost } from '../../common/protocol';
+import { Config } from "../../common/config";
 
 @Injectable()
 export class CostService {
-    private _costsSource: Rx.BehaviorSubject<Cost[]>;
-    private _costs: Rx.Observable<Cost[]>;
+    private _costs: Cost[] = [];
+    private userid = Config.getUserToken();
+    private listeners;
 
-    constructor() {
-        this._costsSource = new Rx.BehaviorSubject<Cost[]>([]);
-        this._costs = this._costsSource.asObservable();   
-    }
-
-    // private costsCollection = new Array<Cost>(
-    //     { id: 0, quantity: 310, type: "Products", changesDate: "Jul 01 2017", isFavorite: false },
-    //     { id: 1, quantity: 25, type: "Products", changesDate: "Aug 25 2017", isFavorite: false },
-    //     { id: 2, quantity: 127, type: "ForHome", changesDate: "Aug 30 2017", isFavorite: false },
-    //     { id: 3, quantity: 80, type: "Products", changesDate: "Aug 29 2010", isFavorite: false },
-    //     { id: 4, quantity: 32, type: "Products", changesDate: "Nov 13 2017", isFavorite: false },
-    //     { id: 5, quantity: 235, type: "Products", changesDate: "Jan 31 2017", isFavorite: false },
-    //     { id: 6, quantity: 98, type: "ForHome", changesDate: "Feb 20 2017", isFavorite: false },
-    //     { id: 7, quantity: 105, type: "Products", changesDate: "Oct 01 2017", isFavorite: false },
-    //     { id: 8, quantity: 80, type: "Products", changesDate: "Aug 29 2017", isFavorite: false },
-    //     { id: 9, quantity: 75, type: "Products", changesDate: "Aug 08 2017", isFavorite: false },
-    //     { id: 10, quantity: 235, type: "Products", changesDate: "Aug 26 2017", isFavorite: false },
-    //     { id: 11, quantity: 264, type: "ForHome", changesDate: "May 30 2017", isFavorite: false },
-    //     { id: 12, quantity: 78, type: "Products", changesDate: "April 04 2017", isFavorite: false }
-    // );
-
-    getCosts() {
-        firebase.addValueEventListener(this.onValueEvent, "/money-tracker-2cd33").then(
-            function(listenerWrapper) {
-              var path = listenerWrapper.path;
-              var listeners = listenerWrapper.listeners; // an Array of listeners added
-              // you can store the wrapper somewhere to later call 'removeEventListeners'
-            }
-        );
-
-        firebase.query((value) => { console.log(value); }, '/money-tracker-2cd33', { orderBy: { type: 1 }}).then((val) => {
-            console.log("Val: " + val);
-        }, (error) => {
-            alert("Error: " + error);
-        });
-    }
-
-    onValueEvent(result) {
-        console.log(JSON.stringify(result));
-    };
-
-    public get costs(): Rx.Observable<Cost[]> {
+    get costs(): Cost[] {
         return this._costs;
     }
 
-    getCost(id: number): Cost {
-        return this._costsSource.getValue().filter(cost => cost.id === id)[0];
+    getCosts(): Promise<any> {
+        const that = this;
+        return new Promise(function(success, error) {
+            firebase.addValueEventListener(
+                (result) => {
+                    const costs = that.objectToArray(result.value);
+                    that._costs = costs;
+                    return success();
+                }, `/${this.userid}/costs`).then(
+                listenerWrapper => that.listeners = listenerWrapper.listeners
+            );
+        }.bind(this));
+    }
+
+    getCost(id: string): Cost {
+        return this._costs.filter(cost => cost.id === id)[0];
     }
 
     addCost(newCost: Cost) {
-        let activeCosts = this._costsSource.getValue();
-        activeCosts.unshift(newCost);
-        this._costsSource.next(activeCosts);
+        firebase.push(`/${this.userid}/costs`, newCost).then(result => {
+            newCost.id = result.key;
+            this._costs.unshift(newCost);
+        });
     }
 
+    updateCost(costForUpdate: Cost) {
+        return firebase.update(`/${this.userid}/costs/${costForUpdate.id}`, costForUpdate);
+    }
+    
     deleteCost(costForDelete: Cost) {
-        let activeCosts = this._costsSource.getValue();
-        var index = activeCosts.indexOf(costForDelete);
-        activeCosts.splice(index, 1);
-        this._costsSource.next(activeCosts);
+        firebase.remove(`/${this.userid}/costs/${costForDelete.id}`).then(result => {
+            const index = this._costs.indexOf(costForDelete);
+            this._costs.splice(index, 1);
+            alert(costForDelete.quantity + " removed!");
+        });
+    }
 
-        alert(costForDelete.quantity + " removed!");
+    removeListeners() {
+        firebase.removeEventListeners(
+            this.listeners,
+            `/${this.userid}/costs`
+        );
+    }
+
+    private objectToArray(object: any): Array<Cost> {
+        let arr: any = [];
+        for (const key in object) {
+            let element = object[key];
+            element.id = key;
+            arr.push(element);
+        }
+        return arr;
     }
 }

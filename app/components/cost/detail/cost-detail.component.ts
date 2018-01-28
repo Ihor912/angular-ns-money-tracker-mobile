@@ -4,6 +4,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 
 import { Cost } from '../../../common/protocol';
 import { CostService } from '../cost.service';
+import { Utils } from '../../../common/utils';
 
 @Component({
     selector: "details",
@@ -21,8 +22,9 @@ export class CostDetailComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const id = +this.route.snapshot.params["id"];
+        const id = this.route.snapshot.params["id"];
         this.cost = this.costService.getCost(id);
+        console.log(JSON.stringify(this.cost));
     }
 
     onEditButtonTap(): void{
@@ -44,5 +46,10 @@ export class CostDetailComponent implements OnInit {
 
     onTap() {
         this.cost.isFavorite = !this.cost.isFavorite;
+    }
+
+    private formatChangesDate(changesDate: string) {
+        let date = new Date(changesDate).toLocaleDateString();
+        return Utils.formatDateString(date);
     }
 }

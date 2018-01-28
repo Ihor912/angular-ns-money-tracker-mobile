@@ -6,6 +6,7 @@ import { TextField } from 'ui/text-field';
 import { Cost } from '../../common/protocol';
 import { CostService } from './cost.service';
 import { Config } from '../../common/config';
+import { ListComponent } from '../../components/list/list.component';
 
 @Component({
     selector: "costs",
@@ -16,11 +17,13 @@ import { Config } from '../../common/config';
 export class CostsComponent implements OnInit {
 
     @ViewChild("newCostTextField") newCostTextField: ElementRef;
+    @ViewChild("list") list: ListComponent;
 
     constructor(private router: RouterExtensions, private costService: CostService) { }
 
     ngOnInit(): void {
-        this.costService.getCosts();
+        const that = this;
+        this.costService.getCosts().then(result => that.list.refresh());
     }
 
     add() {
@@ -33,9 +36,8 @@ export class CostsComponent implements OnInit {
         }
 
         let cost: Cost = new Cost();
-        cost.id = Math.random();
-        cost.quantity = Number(textField.text);
-        cost.type = "TestType";
+        cost.quantity = textField.text;
+        cost.type = "No Type";
         cost.changesDate = (new Date()).toISOString();
         cost.isFavorite = false;
 
@@ -48,7 +50,8 @@ export class CostsComponent implements OnInit {
         .then(() => {
             alert("Logged out successfully!");
             Config.removeAllUserInfo();
-            this.router.navigate([""], { clearHistory: true });
+            this.costService.removeListeners();
+            this.router.navigate(["/login"], { clearHistory: true });
         }, (error) => {
             alert("Error: " + error);
         });

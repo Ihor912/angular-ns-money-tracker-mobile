@@ -16,12 +16,6 @@ export class CalendarComponent {
     public allCosts: Cost[] = new Array<Cost>();
 
     constructor(private costService: CostService){}
-
-    ngOnInit() {
-        this.costService.costs.subscribe((costs) => {
-            this.allCosts = costs;
-        });
-    }
     
     onSendDateChange(args) {
         let startDateRange = new Date(args.startDate);
@@ -35,8 +29,6 @@ export class CalendarComponent {
             }
         });
         this.filteredCosts = costs;
-        //this.costList.pop();
-        //this.filterDate.pop();
     }
 
     onDateRangeStateChangedHandler() {

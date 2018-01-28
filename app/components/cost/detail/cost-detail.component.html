@@ -21,8 +21,8 @@
     <FlexboxLayout class="m-15">
         <Label class="h2" 
                [text]="cost.quantity"></Label>
-        <Label class="date-label" 
-               [text]="cost.changesDate"></Label>            
+        <Label class="date-label"
+               [text]="formatChangesDate(cost.changesDate)"></Label>            
     </FlexboxLayout>        
     <Label [nsRouterLink]="['/cost-edit', cost.id]"
            class="tag-item small-tag-item"

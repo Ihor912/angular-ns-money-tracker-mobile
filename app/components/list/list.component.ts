@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Utils } from '../../common/utils';
 
 @Component({
     moduleId: module.id,
@@ -9,20 +10,18 @@ import { Component, Input } from '@angular/core';
 export class ListComponent {
     @Input() items;
 
-    getDateValue(item) {
+    @ViewChild("list") list: ElementRef;
+
+    refresh() {
+        this.list.nativeElement.refresh();
+    }
+
+    private getDateValue(item) {
         let currentDate: Date = new Date(Date.now());
         let itemDate: Date = new Date(item.changesDate);
         if(currentDate.toDateString() === itemDate.toDateString()) {
             return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
         }
-        return this.dateToYMD(itemDate);
-    }
-
-    dateToYMD(date) {
-        let strArray=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        let d = date.getDate();
-        let m = strArray[date.getMonth()];
-        let y = date.getFullYear();
-        return '' + (d <= 9 ? '0' + d : d) + ' ' + m + ' ' + y;
+        return Utils.dateToYMD(itemDate);
     }
 }

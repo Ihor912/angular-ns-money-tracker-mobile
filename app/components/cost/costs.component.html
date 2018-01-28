@@ -24,5 +24,6 @@
                (tap)="add()"
                class="list-header-button"></Label>
     </GridLayout>
-    <list [items]="costService.costs | async"></list>
+    <list #list 
+          [items]="costService.costs"></list>
 </StackLayout>

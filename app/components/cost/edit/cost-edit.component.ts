@@ -4,6 +4,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 
 import { CostService } from '../cost.service';
 import { Cost } from '../../../common/protocol';
+import { Utils } from '../../../common/utils';
 
 @Component({
     selector: "cost-edit",
@@ -13,6 +14,7 @@ import { Cost } from '../../../common/protocol';
 })
 export class CostEditComponent implements OnInit {
     cost: Cost;
+    costForUpdate: Cost;
     rollbackCost: Cost;
 
     constructor(
@@ -22,32 +24,22 @@ export class CostEditComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const id = +this.route.snapshot.params["id"];
+        const id = this.route.snapshot.params["id"];
         this.cost = this.costService.getCost(id);
-        this.saveRollbackCost(this.cost);
-    }
-
-    saveRollbackCost(cost: Cost): void {
-        this.rollbackCost = new Cost();
-        this.rollbackCost.quantity = cost.quantity;
-        this.rollbackCost.type = cost.type;
-        this.rollbackCost.changesDate = cost.changesDate;
+        this.costForUpdate = Object.assign({}, this.cost);
     }
 
     onCancelButtonTap(): void{
-        this.cost.quantity = this.rollbackCost.quantity;
-        this.cost.type = this.rollbackCost.type;
-        this.cost.changesDate = this.rollbackCost.changesDate
         this.routerExtensions.back();
     }
     
     onDoneButtonTap(): void{
-        let date = new Date().toLocaleDateString();
-        this.cost.changesDate = this.formatDateString(date);
-        this.routerExtensions.back();
-    }
-
-    private formatDateString(dateString: string): string {
-        return (new Date(dateString)).toDateString().slice(4);
+        this.costService.updateCost(this.costForUpdate).then(result => {
+            this.cost.quantity = this.costForUpdate.quantity;
+            this.cost.type = this.costForUpdate.type;
+            // let date = new Date().toLocaleDateString();
+            // this.cost.changesDate = Utils.formatDateString(date);
+            this.routerExtensions.back();
+        });
     }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
+import { Config } from '../../../common/config';
 
 @Component({
     moduleId: module.id,
@@ -22,11 +23,11 @@ export class RegisterComponent {
             password: this.form.password  // '123456'
         })
         .then(
-            (user) =>{
+            user => {
                 this.isLoading = false;
                 alert("Created new user!");
             }, 
-            (error) => {
+            error => {
                 this.isLoading = false;
                 alert("Error: " + error);
             }
