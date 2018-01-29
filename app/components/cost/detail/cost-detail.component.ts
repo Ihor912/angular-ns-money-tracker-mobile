@@ -24,7 +24,6 @@ export class CostDetailComponent implements OnInit {
     ngOnInit(): void {
         const id = this.route.snapshot.params["id"];
         this.cost = this.costService.getCost(id);
-        console.log(JSON.stringify(this.cost));
     }
 
     onEditButtonTap(): void{
@@ -44,8 +43,12 @@ export class CostDetailComponent implements OnInit {
         this.routerExtensions.back();
     }
 
-    onTap() {
-        this.cost.isFavorite = !this.cost.isFavorite;
+    onFavoriteTap() {
+        let costForUpdate = Object.assign({}, this.cost);
+        costForUpdate.isFavorite = !this.cost.isFavorite;
+        this.costService.updateCost(costForUpdate).then(result => {
+            this.cost.isFavorite = !this.cost.isFavorite;
+        });
     }
 
     private formatChangesDate(changesDate: string) {
