@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import * as Rx from 'rxjs/Rx';
 
 import firebase = require('nativescript-plugin-firebase');
 import { Cost } from '../common/protocol';
 import { Config } from "../common/config";
+import { Utils } from "../common/utils";
 
 @Injectable()
 export class CostService {
@@ -20,11 +20,42 @@ export class CostService {
         return new Promise(function(success, error) {
             firebase.addValueEventListener(
                 (result) => {
-                    const costs = that.objectToArray(result.value);
-                    that._costs = costs;
+                    that._costs = that.objectToArray(result.value);
                     return success();
                 }, `/${this.userid}/costs`).then(
                 listenerWrapper => that.listeners = listenerWrapper.listeners
+            );
+        }.bind(this));
+    }
+    
+    filterCosts(dateRange): Promise<any> {
+        const that = this;
+        const parameters = {
+            singleEvent: true,
+            orderBy: { 
+                type: firebase.QueryOrderByType.CHILD, 
+                value: 'changesDate' 
+            },
+            ranges: [
+                {
+                    type: firebase.QueryRangeType.START_AT,
+                    value: (new Date(dateRange.startDate)).toISOString()
+                },
+                {
+                    type: firebase.QueryRangeType.END_AT,
+                    value: Utils.increaseDateByOneDay(dateRange.endDate)
+                }
+            ]
+        };
+
+        return new Promise(function(success, error) {
+            firebase.query(
+                result => {
+                    that._costs = that.objectToArray(result.value);
+                    return success();
+                }, 
+                `/${this.userid}/costs`, 
+                parameters
             );
         }.bind(this));
     }

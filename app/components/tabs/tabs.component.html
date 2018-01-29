@@ -2,13 +2,13 @@
     <Label class="action-bar-title" [text]="title"></Label>
 </ActionBar>
 
-<TabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
+<TabView #tabView (selectedIndexChanged)="onSelectedIndexChanged($event)">
     <StackLayout *tabItem="{title: 'Costs', iconSource: 'res://dollarsign'}">
-        <costs></costs>
+        <costs [dateRange]="dateRange"></costs>
     </StackLayout>
 
-    <StackLayout *tabItem="{title: 'Calendar View', iconSource: 'res://calendar'}">
-        <calendar></calendar>
+    <StackLayout *tabItem="{title: 'Date Filter', iconSource: 'res://calendar'}">
+        <date-range></date-range>
     </StackLayout>
     
     <StackLayout *tabItem="{title: 'Charts', iconSource: 'res://chart'}">

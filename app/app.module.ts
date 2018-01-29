@@ -8,10 +8,7 @@ import { AppRoutingModule, authProviders } from './app.routing';
 import { Config } from './common/config';
 import { BudgetComponent } from './components/budget/budget.component';
 import { BudgetModule } from './components/budget/budget.module';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { CalendarModule } from './components/calendar/calendar.module';
-import { CalendarDateRangeCostListComponent } from './components/calendar/date-range-cost-list/calendar-date-range-cost-list.component';
-import { CalendarDateRangeComponent } from './components/calendar/date-range/calendar-date-range.component';
+import { DateRangeComponent } from './components/date-range/date-range.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { CostModule } from './components/cost/cost.module';
 import { CostsComponent } from './components/cost/costs.component';
@@ -29,7 +26,6 @@ import { TabsComponent } from './components/tabs/tabs.component';
         AppRoutingModule,
         NativeScriptFormsModule,
         CostModule,
-        CalendarModule,
         BudgetModule
     ],
     declarations: [
@@ -38,9 +34,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
         CostsComponent,
         LoginComponent,
         RegisterComponent,
-        CalendarComponent,
-        CalendarDateRangeComponent,
-        CalendarDateRangeCostListComponent,
+        DateRangeComponent,
         ListComponent,
         ChartComponent,
         BudgetComponent

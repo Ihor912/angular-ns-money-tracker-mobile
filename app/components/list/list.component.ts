@@ -19,17 +19,18 @@ export class ListComponent {
         this.list.nativeElement.refresh();
     }
 
-    reloadList(pullToRefreshArgs: any = null) {
-        if (pullToRefreshArgs) {
-            this.pullRefresh = pullToRefreshArgs.object;
-            this.pullToRefreshEvent.emit();
-        }
+    showLoadingIndicator() {
         this.isLoading = true;
     }
 
-    stopReloadList() {
+    hideLoadingIndicator() {
         this.pullRefresh['refreshing'] = false;
         this.isLoading = false;
+    }
+
+    private reloadList(pullToRefreshArgs: any) {
+        this.pullRefresh = pullToRefreshArgs.object;
+        this.pullToRefreshEvent.emit();
     }
 
     private getDateValue(item) {

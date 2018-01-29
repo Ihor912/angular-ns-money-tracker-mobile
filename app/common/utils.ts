@@ -11,4 +11,10 @@ export class Utils {
     public static formatDateString(dateString: string): string {
         return (new Date(dateString)).toDateString().slice(4);
     }
+
+    public static increaseDateByOneDay(dateString: string): string {
+        let date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
+        return date.toISOString();
+    }
 }

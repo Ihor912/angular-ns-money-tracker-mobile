@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
 import { TextField } from 'ui/text-field';
@@ -15,18 +15,38 @@ import { ListComponent } from '../../components/list/list.component';
     styleUrls: ["./cost.component.css"]
 })
 export class CostsComponent implements OnInit {
-
     @ViewChild("newCostTextField") newCostTextField: ElementRef;
     @ViewChild("list") list: ListComponent;
+    
+    private _dateRange = null;
+    @Input() set dateRange(value: any) {
+        this._dateRange = value;
+        if(value['startDate']) {
+            console.log(JSON.stringify(value));
+            this.filterData(value);
+        }
+    }
 
     constructor(private router: RouterExtensions, private costService: CostService) { }
 
     ngOnInit(): void {
-        const that = this;
+        this.reloadData();
+    }
 
-        that.list.reloadList();
+    reloadData() {
+        const that = this;
+        that.list.showLoadingIndicator();
         this.costService.getCosts().then(result => {
-            that.list.stopReloadList();
+            that.list.hideLoadingIndicator();
+            that.list.refresh();
+        });
+    }
+
+    filterData(dateRange) {
+        const that = this;
+        that.list.showLoadingIndicator();
+        this.costService.filterCosts(dateRange).then(result => {
+            that.list.hideLoadingIndicator();
             that.list.refresh();
         });
     }
@@ -52,21 +72,17 @@ export class CostsComponent implements OnInit {
 
     logout() {
         firebase.logout()
-        .then(() => {
-            alert("Logged out successfully!");
-            Config.removeAllUserInfo();
-            this.costService.removeListeners();
-            this.router.navigate(["/login"], { clearHistory: true });
-        }, (error) => {
-            alert("Error: " + error);
-        });
+            .then(() => {
+                alert("Logged out successfully!");
+                Config.removeAllUserInfo();
+                this.costService.removeListeners();
+                this.router.navigate(["/login"], { clearHistory: true });
+            }, (error) => {
+                alert("Error: " + error);
+            });
     }
 
     private pullToRefresh() {
-        const that = this;
-        this.costService.getCosts().then(result => {
-            that.list.stopReloadList();
-            that.list.refresh();
-        });
+        this.reloadData();
     }
 }

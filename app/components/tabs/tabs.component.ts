@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { isAndroid } from 'platform';
 import { SelectedIndexChangedEventData, TabView } from 'tns-core-modules/ui/tab-view';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: "tabs",
@@ -9,16 +10,20 @@ import { SelectedIndexChangedEventData, TabView } from 'tns-core-modules/ui/tab-
     styleUrls: ["./tabs.component.css"]
 })
 export class TabsComponent {
-    private _title: string;
+    @Input() title: string;
+    @ViewChild("tabView") tabView: ElementRef;
+    private dateRange = {};
 
-    get title(): string {
-        return this._title;
-    }
-
-    set title(value: string) {
-        if (this._title !== value) {
-            this._title = value;
-        }
+    constructor(private router: ActivatedRoute) {
+        this.router.queryParams.subscribe(params => {
+            if(params["startDate"] && params["endDate"]) {
+                this.tabView.nativeElement.selectedIndex = 0;
+                this.dateRange = {
+                    startDate: params["startDate"],
+                    endDate: params["endDate"]
+                };
+            }
+        });
     }
 
     getIconSource(icon: string): string {

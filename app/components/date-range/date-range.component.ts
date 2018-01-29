@@ -1,28 +1,22 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { DatePicker } from 'ui/date-picker';
+import { RouterExtensions } from 'nativescript-angular';
 
 
 @Component({
-    selector: "calendar-date-range",
+    selector: "date-range",
     moduleId: module.id,
-    templateUrl: "./calendar-date-range.component.html",
-    styleUrls: ["./calendar-date-range.component.css"]
+    templateUrl: "./date-range.component.html",
+    styleUrls: ["./date-range.component.css"]
 })
-export class CalendarDateRangeComponent {
+export class DateRangeComponent {
     private _startDate: string;
     private _endDate: string;
 
-    @Output() stateChanged = new EventEmitter();
-    @Output() sendDateChange = new EventEmitter();
-    
-    onTap() {
-        this.stateChanged.next("");
+    constructor(protected routerExtensions: RouterExtensions) {}
 
-        let dateRange = {
-            startDate: this._startDate,
-            endDate: this._endDate
-        }
-        this.sendDateChange.next(dateRange);
+    onFilterTap() {
+        this.routerExtensions.navigate(['/tabs'], { animated: false, queryParams: { startDate: this._startDate, endDate: this._endDate }});
     }
 
     onStartPickerLoaded(args) {
