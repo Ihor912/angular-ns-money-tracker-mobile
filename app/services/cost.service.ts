@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import * as Rx from 'rxjs/Rx';
 
 import firebase = require('nativescript-plugin-firebase');
-import { Cost } from '../../common/protocol';
-import { Config } from "../../common/config";
+import { Cost } from '../common/protocol';
+import { Config } from "../common/config";
 
 @Injectable()
 export class CostService {

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular/router';
 
 import { Cost } from '../../../common/protocol';
-import { CostService } from '../cost.service';
 import { Utils } from '../../../common/utils';
+import { CostService } from '../../../services/cost.service';
 
 @Component({
     selector: "details",

@@ -4,7 +4,7 @@ import firebase = require('nativescript-plugin-firebase');
 import { TextField } from 'ui/text-field';
 
 import { Cost } from '../../common/protocol';
-import { CostService } from './cost.service';
+import { CostService } from '../../services/cost.service';
 import { Config } from '../../common/config';
 import { ListComponent } from '../../components/list/list.component';
 

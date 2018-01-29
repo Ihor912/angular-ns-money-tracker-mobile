@@ -3,7 +3,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
 import { AppRoutingModule } from '../../app.routing';
-import { BudgetService } from './budget.service';
+import { BudgetService } from '../../services/budget.service';
 
 @NgModule({
     imports: [

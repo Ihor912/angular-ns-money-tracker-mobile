@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { CostService } from '../cost/cost.service';
+import { CostService } from '../../services/cost.service';
 import { Cost } from '../../common/protocol';
 
 

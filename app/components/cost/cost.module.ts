@@ -3,7 +3,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
 import { AppRoutingModule } from '../../app.routing';
-import { CostService } from './cost.service';
+import { CostService } from '../../services/cost.service';
 import { CostDetailComponent } from './detail/cost-detail.component';
 import { CostEditComponent } from './edit/cost-edit.component';
 
