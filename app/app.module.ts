@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
+import { registerElement } from 'nativescript-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule, authProviders } from './app.routing';
@@ -54,3 +55,5 @@ import { TabsComponent } from './components/tabs/tabs.component';
 })
 
 export class AppModule { }
+
+registerElement("pullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);

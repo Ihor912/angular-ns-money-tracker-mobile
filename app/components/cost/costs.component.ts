@@ -56,4 +56,12 @@ export class CostsComponent implements OnInit {
             alert("Error: " + error);
         });
     }
+
+    private pullToRefresh() {
+        const that = this;
+        this.costService.getCosts().then(result => {
+            that.list.stopReloadTree();
+            that.list.refresh();
+        });
+    }
 }

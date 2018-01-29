@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Utils } from '../../common/utils';
 
 @Component({
@@ -9,11 +9,17 @@ import { Utils } from '../../common/utils';
 })
 export class ListComponent {
     @Input() items;
-
+    @Output() pullToRefreshEvent = new EventEmitter();
     @ViewChild("list") list: ElementRef;
+
+    private pullRefresh = {};
 
     refresh() {
         this.list.nativeElement.refresh();
+    }
+
+    stopReloadTree() {
+        this.pullRefresh['refreshing'] = false;
     }
 
     private getDateValue(item) {
@@ -23,5 +29,10 @@ export class ListComponent {
             return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
         }
         return Utils.dateToYMD(itemDate);
+    }
+
+    private refreshList(args: any) {
+        this.pullRefresh = args.object;
+        this.pullToRefreshEvent.emit();
     }
 }
