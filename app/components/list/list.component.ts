@@ -13,13 +13,23 @@ export class ListComponent {
     @ViewChild("list") list: ElementRef;
 
     private pullRefresh = {};
+    private isLoading: boolean = false;
 
     refresh() {
         this.list.nativeElement.refresh();
     }
 
-    stopReloadTree() {
+    reloadList(pullToRefreshArgs: any = null) {
+        if (pullToRefreshArgs) {
+            this.pullRefresh = pullToRefreshArgs.object;
+            this.pullToRefreshEvent.emit();
+        }
+        this.isLoading = true;
+    }
+
+    stopReloadList() {
         this.pullRefresh['refreshing'] = false;
+        this.isLoading = false;
     }
 
     private getDateValue(item) {
@@ -29,10 +39,5 @@ export class ListComponent {
             return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
         }
         return Utils.dateToYMD(itemDate);
-    }
-
-    private refreshList(args: any) {
-        this.pullRefresh = args.object;
-        this.pullToRefreshEvent.emit();
     }
 }

@@ -23,7 +23,12 @@ export class CostsComponent implements OnInit {
 
     ngOnInit(): void {
         const that = this;
-        this.costService.getCosts().then(result => that.list.refresh());
+
+        that.list.reloadList();
+        this.costService.getCosts().then(result => {
+            that.list.stopReloadList();
+            that.list.refresh();
+        });
     }
 
     add() {
@@ -60,7 +65,7 @@ export class CostsComponent implements OnInit {
     private pullToRefresh() {
         const that = this;
         this.costService.getCosts().then(result => {
-            that.list.stopReloadTree();
+            that.list.stopReloadList();
             that.list.refresh();
         });
     }
