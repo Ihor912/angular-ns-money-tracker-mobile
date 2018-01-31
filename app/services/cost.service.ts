@@ -5,11 +5,11 @@ import firebase = require('nativescript-plugin-firebase');
 import { Cost } from '../common/protocol';
 import { Config } from "../common/config";
 import { Utils } from "../common/utils";
-import { Observable } from "tns-core-modules/ui/editable-text-base/editable-text-base";
 
 @Injectable()
 export class CostService {
     private _costs: ObservableArray<any> = new ObservableArray();
+    private userid = Config.getUserToken();
     private listeners;
 
     get costs(): ObservableArray<any> {
@@ -21,10 +21,9 @@ export class CostService {
         return new Promise(function(success, error) {
             firebase.addValueEventListener(
                 (result) => {
-                    console.log('objectToArray: ', JSON.stringify(result));
                     that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
-                }, `/${Config.getUserToken()}/costs`).then(
+                }, `/${this.userid}/costs`).then(
                 listenerWrapper => that.listeners = listenerWrapper.listeners
             );
         }.bind(this));
@@ -41,21 +40,18 @@ export class CostService {
             ranges: [
                 {
                     type: firebase.QueryRangeType.START_AT,
-                    value: Utils.dateToYMD(new Date(dateRange.startDate))
+                    value: (new Date(dateRange.startDate)).toISOString()
                 },
                 {
                     type: firebase.QueryRangeType.END_AT,
-                    value: Utils.dateToYMD(new Date(dateRange.endDate))
+                    value: Utils.increaseDateByOneDay(dateRange.endDate)
                 }
             ]
         };
 
-        console.log(JSON.stringify(parameters));
-
         return new Promise(function(success, error) {
             firebase.query(
                 result => {
-                    console.log('objectToArray: ', JSON.stringify(result));
                     that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
                 }, 
@@ -70,18 +66,18 @@ export class CostService {
     }
 
     addCost(newCost: Cost) {
-        firebase.push(`/${Config.getUserToken()}/costs`, newCost).then(result => {
+        firebase.push(`/${this.userid}/costs`, newCost).then(result => {
             newCost.id = result.key;
             this._costs.unshift(newCost);
         });
     }
 
     updateCost(costForUpdate: Cost) {
-        return firebase.update(`/${Config.getUserToken()}/costs/${costForUpdate.id}`, costForUpdate);
+        return firebase.update(`/${this.userid}/costs/${costForUpdate.id}`, costForUpdate);
     }
     
     deleteCost(costForDelete: Cost) {
-        firebase.remove(`/${Config.getUserToken()}/costs/${costForDelete.id}`).then(result => {
+        firebase.remove(`/${this.userid}/costs/${costForDelete.id}`).then(result => {
             const index = this._costs.indexOf(costForDelete);
             this._costs.splice(index, 1);
             alert(costForDelete.quantity + " removed!");
@@ -91,7 +87,7 @@ export class CostService {
     removeListeners() {
         firebase.removeEventListeners(
             this.listeners,
-            `/${Config.getUserToken()}/costs`
+            `/${this.userid}/costs`
         );
     }
 
