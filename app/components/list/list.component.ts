@@ -36,9 +36,9 @@ export class ListComponent {
     private getDateValue(item) {
         let currentDate: Date = new Date(Date.now());
         let itemDate: Date = new Date(item.changesDate);
-        if(currentDate.toDateString() === itemDate.toDateString()) {
-            return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
-        }
-        return Utils.dateToYMD(itemDate);
+        // if(currentDate.toDateString() === itemDate.toDateString()) {
+        //     return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
+        // }
+        return Utils.dateToYMDWithMonthName(itemDate);
     }
 }

@@ -5,6 +5,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { CostService } from '../../../services/cost.service';
 import { Cost } from '../../../common/protocol';
 import { Utils } from '../../../common/utils';
+import { DatePicker } from 'tns-core-modules/ui/date-picker/date-picker';
 
 @Component({
     selector: "cost-edit",
@@ -16,6 +17,7 @@ export class CostEditComponent implements OnInit {
     cost: Cost;
     costForUpdate: Cost;
     rollbackCost: Cost;
+    costDate: string;
 
     constructor(
         private costService: CostService,
@@ -29,16 +31,30 @@ export class CostEditComponent implements OnInit {
         this.costForUpdate = Object.assign({}, this.cost);
     }
 
-    onCancelButtonTap(): void{
+    onDatePickerLoaded(args) {
+        let datePicker = <DatePicker>args.object;
+        datePicker.date = new Date(this.cost.changesDate);
+        this.costDate = datePicker.date.toDateString();
+    }
+
+    onDateChange(args) {
+        this.costDate = args.value;
+    }
+
+    onCancelButtonTap(): void {
         this.routerExtensions.back();
     }
     
-    onDoneButtonTap(): void{
+    onDoneButtonTap(): void {
+        this.costForUpdate.changesDate = (new Date(this.costDate)).toDateString();
+        this.costForUpdate.changesMonth = Utils.getMonthAndYear(new Date(this.costDate));
+
         this.costService.updateCost(this.costForUpdate).then(result => {
             this.cost.quantity = this.costForUpdate.quantity;
             this.cost.type = this.costForUpdate.type;
-            // let date = new Date().toLocaleDateString();
-            // this.cost.changesDate = Utils.formatDateString(date);
+            this.cost.changesDate = this.costForUpdate.changesDate;
+            this.cost.changesMonth = this.costForUpdate.changesMonth;
+            
             this.routerExtensions.back();
         });
     }
