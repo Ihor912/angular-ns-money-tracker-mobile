@@ -17,4 +17,15 @@ export class Utils {
         date.setDate(date.getDate() + 1);
         return date.toISOString();
     }
+
+    public static getMonthName(date: Date) {
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return monthNames[date.getMonth()];
+    }
+
+    public static getMonthAndYear(date: Date) {
+        const monthName = Utils.getMonthName(date);
+        const year = (date).getFullYear().toString().substring(2);
+        return monthName + ' ' + year;
+    }
 }

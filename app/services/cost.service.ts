@@ -1,17 +1,18 @@
 import { Injectable } from "@angular/core";
-
+import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
 import firebase = require('nativescript-plugin-firebase');
+
 import { Cost } from '../common/protocol';
 import { Config } from "../common/config";
 import { Utils } from "../common/utils";
 
 @Injectable()
 export class CostService {
-    private _costs: Cost[] = [];
+    private _costs: ObservableArray<any> = new ObservableArray();
     private userid = Config.getUserToken();
     private listeners;
 
-    get costs(): Cost[] {
+    get costs(): ObservableArray<any> {
         return this._costs;
     }
 
@@ -20,7 +21,7 @@ export class CostService {
         return new Promise(function(success, error) {
             firebase.addValueEventListener(
                 (result) => {
-                    that._costs = that.objectToArray(result.value);
+                    that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
                 }, `/${this.userid}/costs`).then(
                 listenerWrapper => that.listeners = listenerWrapper.listeners
@@ -51,7 +52,7 @@ export class CostService {
         return new Promise(function(success, error) {
             firebase.query(
                 result => {
-                    that._costs = that.objectToArray(result.value);
+                    that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
                 }, 
                 `/${this.userid}/costs`, 

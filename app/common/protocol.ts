@@ -5,8 +5,9 @@ export interface DateRange {
 
 export class Cost {
     id: string;
-    quantity: string;
+    quantity: number;
     type: string;
     changesDate: string;
     isFavorite: boolean;
+    changesMonth: string;
 }
