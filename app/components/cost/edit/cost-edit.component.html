@@ -31,13 +31,4 @@
         <TextField [(ngModel)]="costForUpdate.type"
                    col="1"></TextField>
     </GridLayout>
-    <GridLayout class="row"
-                columns="80, *"
-                verticalAlignment="center">
-        <Label text="Cost's Date"
-               col="0"></Label>  
-        <DatePicker (loaded)="onDatePickerLoaded($event)" 
-                    (dateChange)="onDateChange($event)"
-                    col="1"></DatePicker>
-    </GridLayout>
 </StackLayout>

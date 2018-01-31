@@ -1,37 +1,7 @@
-<SegmentedBar [items]="barButtons" 
-			  (selectedIndexChange)="onSelectedIndexChange($event)" 
-			  backgroundColor="#D3D3D3"></SegmentedBar>
-
-<PullToRefresh class="main-container"
-			   (refresh)="pullToRefresh($event)">
-	<StackLayout padding="30">
-		<StackLayout visibility="{{ barButtonsSelectedIndex === 0 ? 'visible' : 'collapsed' }}">
-			<RadCartesianChart>
-				<CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-				<LinearAxis tkCartesianVerticalAxis></LinearAxis>
-				<BarSeries tkCartesianSeries
-							seriesName="Bar"
-							[items]="costService.costs"
-							categoryProperty="changesMonth"
-							valueProperty="quantity"></BarSeries>
-			</RadCartesianChart>
-		</StackLayout>
-		<StackLayout visibility="{{ barButtonsSelectedIndex === 1 ? 'visible' : 'collapsed' }}">
-			<RadPieChart allowAnimation="true">
-				<PieSeries tkPieSeries
-							selectionMode="DataPoint" 
-							expandRadius="0.4" 
-							outerRadiusFactor="0.7" 
-							[items]="costService.costs"
-							valueProperty="quantity"
-							legendLabel="changesMonth"></PieSeries>
-				<RadLegendView tkPieLegend 
-								position="Right" 
-								title="Tasks" 
-								offsetOrigin="TopRight" 
-								width="110" 
-								enableSelection="true"></RadLegendView>
-			</RadPieChart>
-		</StackLayout>
-	</StackLayout>
-</PullToRefresh>
+<StackLayout> 
+    <Button text="Budget"
+            class="btn-budget"
+            [nsRouterLink]="['/budget']"
+            (tap)="onTap()"></Button>
+</StackLayout>
+ 

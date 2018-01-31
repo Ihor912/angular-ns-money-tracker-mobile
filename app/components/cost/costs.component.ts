@@ -7,7 +7,6 @@ import { Cost } from '../../common/protocol';
 import { CostService } from '../../services/cost.service';
 import { Config } from '../../common/config';
 import { ListComponent } from '../../components/list/list.component';
-import { Utils } from '../../common/utils';
 
 @Component({
     selector: "costs",
@@ -23,6 +22,7 @@ export class CostsComponent implements OnInit {
     @Input() set dateRange(value: any) {
         this._dateRange = value;
         if(value['startDate']) {
+            console.log(JSON.stringify(value));
             this.filterData(value);
         }
     }
@@ -61,10 +61,9 @@ export class CostsComponent implements OnInit {
         }
 
         let cost: Cost = new Cost();
-        cost.quantity = Number(textField.text);
+        cost.quantity = textField.text;
         cost.type = "No Type";
-        cost.changesDate = Utils.dateToYMD(new Date());
-        cost.changesMonth = Utils.getMonthAndYear(new Date());
+        cost.changesDate = (new Date()).toISOString();
         cost.isFavorite = false;
 
         this.costService.addCost(cost);
