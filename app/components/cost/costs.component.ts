@@ -23,7 +23,6 @@ export class CostsComponent implements OnInit {
     @Input() set dateRange(value: any) {
         this._dateRange = value;
         if(value['startDate']) {
-            console.log(JSON.stringify(value));
             this.filterData(value);
         }
     }
