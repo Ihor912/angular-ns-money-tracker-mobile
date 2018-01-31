@@ -9,7 +9,6 @@ import { Utils } from "../common/utils";
 @Injectable()
 export class CostService {
     private _costs: ObservableArray<any> = new ObservableArray();
-    private userid = Config.getUserToken();
     private listeners;
 
     get costs(): ObservableArray<any> {
@@ -18,12 +17,13 @@ export class CostService {
 
     getCosts(): Promise<any> {
         const that = this;
+        const userid = Config.getUserToken();
         return new Promise(function(success, error) {
             firebase.addValueEventListener(
                 (result) => {
                     that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
-                }, `/${this.userid}/costs`).then(
+                }, `/${userid}/costs`).then(
                 listenerWrapper => that.listeners = listenerWrapper.listeners
             );
         }.bind(this));
@@ -50,12 +50,13 @@ export class CostService {
         };
 
         return new Promise(function(success, error) {
+            const userid = Config.getUserToken();
             firebase.query(
                 result => {
                     that._costs = new ObservableArray(that.objectToArray(result.value));
                     return success();
                 }, 
-                `/${this.userid}/costs`, 
+                `/${userid}/costs`, 
                 parameters
             );
         }.bind(this));
@@ -66,18 +67,21 @@ export class CostService {
     }
 
     addCost(newCost: Cost) {
-        firebase.push(`/${this.userid}/costs`, newCost).then(result => {
+        const userid = Config.getUserToken();
+        firebase.push(`/${userid}/costs`, newCost).then(result => {
             newCost.id = result.key;
             this._costs.unshift(newCost);
         });
     }
 
     updateCost(costForUpdate: Cost) {
-        return firebase.update(`/${this.userid}/costs/${costForUpdate.id}`, costForUpdate);
+        const userid = Config.getUserToken();
+        return firebase.update(`/${userid}/costs/${costForUpdate.id}`, costForUpdate);
     }
     
     deleteCost(costForDelete: Cost) {
-        firebase.remove(`/${this.userid}/costs/${costForDelete.id}`).then(result => {
+        const userid = Config.getUserToken();
+        firebase.remove(`/${userid}/costs/${costForDelete.id}`).then(result => {
             const index = this._costs.indexOf(costForDelete);
             this._costs.splice(index, 1);
             alert(costForDelete.quantity + " removed!");
@@ -85,9 +89,10 @@ export class CostService {
     }
 
     removeListeners() {
+        const userid = Config.getUserToken();
         firebase.removeEventListeners(
             this.listeners,
-            `/${this.userid}/costs`
+            `/${userid}/costs`
         );
     }
 
