@@ -38,14 +38,6 @@
                        class="value-label"></Label>
         </StackLayout>
 
-        <StackLayout *ngIf="state == 'read'"
-                     orientation="horizontal">  
-                <Label text="Budget for a day - "
-                       class="info-label"></Label>
-                <Label [text]="budgetService.budgetForDay"
-                       class="value-label"></Label>
-        </StackLayout>
-
         <StackLayout *ngIf="state == 'edit'"
                      orientation="vertical">
                 <Label text="Budget for a mounth:"

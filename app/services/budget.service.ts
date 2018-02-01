@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
+import firebase = require('nativescript-plugin-firebase');
+
+import { Config } from '../common/config';
 
 @Injectable()
 export class BudgetService {
-    private _budget: number = 3000;
-    public budgetForDay: number = 0;
-
-    private getDayBudget() {
-        let currentDaysMonth = this.daysInCurrentMonth();
-        this.budgetForDay = Number((this._budget / currentDaysMonth).toFixed(2));
-    }
-
-    private daysInCurrentMonth() {
-        let dateNow = new Date();  
-        return new Date(dateNow.getFullYear(), dateNow.getMonth()+1, 0).getDate();
-    }
-
-    public set budget(value : number) {
-        this._budget = value;
-        this.getDayBudget();
+    public budget: number = 0;
+    
+    getBudget() {
+        const userid = Config.getUserToken();
+        firebase.getValue(`/${userid}/budget`).then(result => {
+            this.budget = result.value.value;
+        });
     }
     
-    public get budget() : number {
-        return this._budget;
+    setBudget(value: number) {
+        const userid = Config.getUserToken();
+        firebase.setValue(
+            `/${userid}/budget`,
+            {
+              value: value,
+              updateTs: firebase.ServerValue.TIMESTAMP
+            }
+        ).then(result => {
+            this.budget = value;
+        });
     }
-    
 }

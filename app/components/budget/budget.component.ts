@@ -20,6 +20,11 @@ export class BudgetComponent {
         private budgetService: BudgetService
     ) {}
 
+    ngOnInit() {
+        console.log('ngOnInit');
+        this.budgetService.getBudget();
+    }
+
     onEditButtonTap() {
         this.state = 'edit';
     }
@@ -33,7 +38,7 @@ export class BudgetComponent {
             return;
         }
 
-        this.budgetService.budget = Number(textField.text);
+        this.budgetService.setBudget(Number(textField.text));
         this.state = 'read';
     }
 
