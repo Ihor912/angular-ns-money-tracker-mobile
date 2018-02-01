@@ -1,9 +1,12 @@
 .container {
     padding-left: 50;
     padding-right: 50;
+    padding-bottom: 40%; 
 }
  
 .btn-register {
-    background-color: #7ada2f;  
-    color: aliceblue;
+    background-color: #046118;  
+    color: #fff;
+    margin-bottom: 7pt;
+    margin-top: 10pt;
 }

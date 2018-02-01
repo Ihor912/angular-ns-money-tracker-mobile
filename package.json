@@ -1,8 +1,16 @@
 {
-  "description": "NativeScript Application",
+  "author": {
+    "name": "Ihor Khomiak",
+    "email": "iokhomiak@gmail.com",
+    "url": "https://www.linkedin.com/in/ihor-khomiak"
+  },
+  "displayName": "MTracker",
+  "name": "MTracker",
+  "version": "1.0.0",
+  "description": "MTracker helps to log your costs and save your money!",
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "repository": "https://github.com/Ihor912/money-tracker-mobile.git",
   "nativescript": {
     "id": "org.nativescript.MoneyTracker",
     "tns-ios": {

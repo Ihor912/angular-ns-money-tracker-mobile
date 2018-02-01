@@ -1,6 +1,7 @@
 .container {
    padding-left: 40;
    padding-right: 40;
+   padding-bottom: 40%; 
 }
 
 .group {
@@ -8,7 +9,7 @@
 }
 
 .btn-login {
-    background-color: #7ada2f;  
-    color: aliceblue;
-    margin-bottom: 7pt;
+    background-color: #046118;  
+    color: #fff;
+    margin-bottom: 10pt;
 }

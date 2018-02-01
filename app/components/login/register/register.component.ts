@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
+import { Page } from 'ui/page';
+
 import { Config } from '../../../common/config';
 
 @Component({
@@ -13,7 +15,8 @@ export class RegisterComponent {
     private form: any = {};
     private isLoading: boolean = false;
 
-    public constructor(private router: RouterExtensions) {
+    public constructor(private router: RouterExtensions, private page: Page) {
+        page.actionBarHidden = true;
     }
 
     public onRegister() {
