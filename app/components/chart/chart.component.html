@@ -6,28 +6,35 @@
 			   (refresh)="pullToRefresh($event)">
 	<StackLayout padding="30">
 		<StackLayout visibility="{{ barButtonsSelectedIndex === 0 ? 'visible' : 'collapsed' }}">
-			<RadCartesianChart>
+			<RadCartesianChart allowAnimation="true" seriesSelectionMode="none">
 				<CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
 				<LinearAxis tkCartesianVerticalAxis></LinearAxis>
 				<BarSeries tkCartesianSeries
-							seriesName="Bar"
-							[items]="costService.costs"
+							showLabels="true"
+						    seriesName="inbound"
+							[items]="cartesianProvider"
 							categoryProperty="changesMonth"
 							valueProperty="quantity"></BarSeries>
+				<Palette tkCartesianPalette 
+						 seriesName="inbound">
+					<PaletteEntry tkCartesianPaletteEntry 
+								  fillColor="#1da125" 
+								  strokeColor="Transparent"></PaletteEntry>
+				</Palette>
 			</RadCartesianChart>
 		</StackLayout>
 		<StackLayout visibility="{{ barButtonsSelectedIndex === 1 ? 'visible' : 'collapsed' }}">
 			<RadPieChart allowAnimation="true">
 				<PieSeries tkPieSeries
 							selectionMode="DataPoint" 
-							expandRadius="0.4" 
-							outerRadiusFactor="0.7" 
-							[items]="pieItems"
+							expandRadius="0.8" 
+							outerRadiusFactor="0.9" 
+							[items]="pieProvider"
 							valueProperty="quantity"
 							legendLabel="type"></PieSeries>
 				<RadLegendView tkPieLegend 
 								position="Right" 
-								title="Tasks" 
+								title="Cost Types" 
 								offsetOrigin="TopRight" 
 								width="110" 
 								enableSelection="true"></RadLegendView>

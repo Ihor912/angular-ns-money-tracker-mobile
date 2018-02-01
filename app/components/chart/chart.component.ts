@@ -13,10 +13,19 @@ import { CostService } from '../../services/cost.service';
 export class ChartComponent {
     private barButtons: Array<SegmentedBarItem> = [];
     private barButtonsSelectedIndex = 0;
-    private pieItems: ObservableArray<any> = new ObservableArray();
+    private pieProvider: ObservableArray<any> = new ObservableArray();
+    private cartesianProvider: ObservableArray<any> = new ObservableArray();
 
     constructor(private costService: CostService){
         this.initSegmentedBar();
+    }
+
+    public refreshCharts() {
+        if(this.barButtonsSelectedIndex === 0) {
+            this.parseCostsForCartesian();
+        } else {
+            this.parseCostsForPie();
+        }
     }
 
     private initSegmentedBar() {
@@ -39,13 +48,26 @@ export class ChartComponent {
             }
             costTypes[cost.type] += cost.quantity;
         });
-        this.pieItems = new ObservableArray(this.objectToArray(costTypes));
+        this.pieProvider = new ObservableArray(this.objectToArray(costTypes));
+    }
+
+    private parseCostsForCartesian() {
+        let costMonths = {};
+        this.costService.costs.forEach(cost => {
+            if(costMonths[cost.changesMonth] == undefined) {
+                costMonths[cost.changesMonth] = 0;
+            }
+            costMonths[cost.changesMonth] += cost.quantity;
+        });
+        this.cartesianProvider = new ObservableArray(this.objectToArray(costMonths));
     }
 
     private onSelectedIndexChange(args) {
         let segmetedBar = <SegmentedBar>args.object;
         this.barButtonsSelectedIndex = segmetedBar.selectedIndex;
-        if(segmetedBar.selectedIndex === 1) {
+        if(segmetedBar.selectedIndex === 0) {
+            this.parseCostsForCartesian();
+        } else {
             this.parseCostsForPie();
         }
     }
@@ -62,6 +84,7 @@ export class ChartComponent {
         for (const key in object) {
             let element = {
                 type: key,
+                changesMonth: key,
                 quantity: object[key]
             };
             arr.push(element);

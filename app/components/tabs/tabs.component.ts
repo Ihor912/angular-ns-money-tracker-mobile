@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { isAndroid } from 'platform';
 import { SelectedIndexChangedEventData, TabView } from 'tns-core-modules/ui/tab-view';
 import { ActivatedRoute } from '@angular/router';
+import { ChartComponent } from '../../components/chart/chart.component';
 
 @Component({
     selector: "tabs",
@@ -12,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class TabsComponent {
     @Input() title: string;
     @ViewChild("tabView") tabView: ElementRef;
+    @ViewChild("chart") chart: ChartComponent;
     private dateRange = {};
 
     constructor(private router: ActivatedRoute) {
@@ -33,7 +35,11 @@ export class TabsComponent {
     onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
         const tabView = <TabView>args.object;
         const selectedTabViewItem = tabView.items[args.newIndex];
+        if(args.newIndex === 2) {
+            this.chart.refreshCharts();
+        }
 
         this.title = selectedTabViewItem.title;
+
     }
 }
