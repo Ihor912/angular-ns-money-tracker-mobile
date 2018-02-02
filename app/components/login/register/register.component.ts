@@ -22,13 +22,13 @@ export class RegisterComponent {
     public onRegister() {
         this.isLoading = true;
         firebase.createUser({
-            email: this.form.email,  // 'ihor.khomiak1@test.com', 
-            password: this.form.password  // '123456'
+            email: this.form.email,
+            password: this.form.password
         })
         .then(
             user => {
                 this.isLoading = false;
-                alert("Created new user!");
+                alert("Створено нового користовача!");
             }, 
             error => {
                 this.isLoading = false;

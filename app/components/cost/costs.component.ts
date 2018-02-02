@@ -56,13 +56,13 @@ export class CostsComponent implements OnInit {
         textField.dismissSoftInput();
 
         if (textField.text.trim() === "") {
-            alert("Incorrect Value");
+            alert("Невірне значення!");
             return;
         }
 
         let cost: Cost = new Cost();
         cost.quantity = Number(textField.text);
-        cost.type = "No Type";
+        cost.type = "Загальне";
         cost.changesDate = (new Date()).toISOString();
         cost.changesMonth = Utils.getMonthAndYear(new Date());
         cost.isFavorite = false;
@@ -74,7 +74,7 @@ export class CostsComponent implements OnInit {
     logout() {
         firebase.logout()
             .then(() => {
-                alert("Logged out successfully!");
+                alert("Ви успішно вийшли!");
                 Config.removeAllUserInfo();
                 this.costService.removeListeners();
                 this.router.navigate(["/login"], { clearHistory: true });

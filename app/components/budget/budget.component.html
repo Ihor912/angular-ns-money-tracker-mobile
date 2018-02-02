@@ -1,4 +1,4 @@
-<ActionBar title="Budget" 
+<ActionBar title="Бюджет" 
            class="action-bar">
     <ActionItem *ngIf="state == 'read'"
                 (tap)="onEditButtonTap()"
@@ -12,17 +12,10 @@
                 ios.position="right" 
                 android.position="right" 
                 (tap)="onSaveButtonTap()">
-        <Label text="Save" 
-               class="action-item"></Label>
+        <Label text="&#xf14a;" 
+               class="font-awesome action-item action-icon"></Label>
     </ActionItem>
-    <ActionItem *ngIf="state == 'edit'"
-                ios.position="right" 
-                android.position="right" 
-                (tap)="onCancelButtonTap()">
-        <Label text="Cancel" 
-               class="action-item"></Label>
-    </ActionItem>
-    <NavigationButton text="Go Back"
+    <NavigationButton text="Повернутись"
                       android.systemIcon="ic_menu_back"
                       (tap)="onBackTap()"
                       class="btn-back"></NavigationButton>
@@ -32,7 +25,7 @@
              class="container">
         <StackLayout *ngIf="state == 'read'"
                      orientation="horizontal">
-                <Label text="Budget for a mounth - "
+                <Label text="Бюджет на місяць - "
                        class="info-label"></Label>
                 <Label [text]="budgetService.budget"
                        class="value-label"></Label>
@@ -40,7 +33,7 @@
 
         <StackLayout *ngIf="state == 'edit'"
                      orientation="vertical">
-                <Label text="Budget for a mounth:"
+                <Label text="Бюджет на місяць:"
                        class="info-edit-label"></Label>
                 <TextField [text]="budgetService.budget"
                            keyboardType="number"

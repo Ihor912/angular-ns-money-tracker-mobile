@@ -1,7 +1,7 @@
 export class Utils {
 
     public static dateToYMD(date) {
-        let strArray=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let strArray = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сеп', 'Вер', 'Жов', 'Лис', 'Гру'];
         let d = date.getDate();
         let m = strArray[date.getMonth()];
         let y = date.getFullYear();
@@ -19,7 +19,7 @@ export class Utils {
     }
 
     public static getMonthName(date: Date) {
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const monthNames = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сеп', 'Вер', 'Жов', 'Лис', 'Гру'];
         return monthNames[date.getMonth()];
     }
 

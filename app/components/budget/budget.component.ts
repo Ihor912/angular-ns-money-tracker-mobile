@@ -21,7 +21,6 @@ export class BudgetComponent {
     ) {}
 
     ngOnInit() {
-        console.log('ngOnInit');
         this.budgetService.getBudget();
     }
 
@@ -34,7 +33,7 @@ export class BudgetComponent {
         textField.dismissSoftInput();
 
         if (textField.text.trim() === "") {
-            alert("Incorrect Value");
+            alert("Неправильне значення!");
             return;
         }
 

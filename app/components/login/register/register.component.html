@@ -10,44 +10,43 @@
                        verticalAlignment="center"></ActivityIndicator>
     <TextField [(ngModel)]="form.email"
                #email="ngModel"
-               hint="Email"
+               hint="Ел. пошта"
                keyboardType="email"
                autocorrect="false"
                minlength="1" 
                required></TextField>
     <StackLayout *ngIf="email.errors && email.dirty && email.touched">
         <Label *ngIf="email.errors.required" 
-                text="- An email field is required -"></Label>
+                text="- Поле Ел. пошта є обов'язковим -"></Label>
         <Label *ngIf="email.errors.minlength" 
-                text="- Email must be longer than 1 characters -"></Label>
+                text="- Поле Ел. пошта має мати не менше одного символа -"></Label>
     </StackLayout>
     <TextField [(ngModel)]="form.name"
                #name="ngModel"
-               hint="Name"
+               hint="Ім'я"
                autocorrect="false"
                minlength="1" 
                required></TextField>
     <StackLayout *ngIf="name.errors && name.dirty && name.touched">
         <Label *ngIf="name.errors.required" 
-                text="- An name field is required -"></Label>
+                text="- Поле Ім'я є обов'язковим -"></Label>
         <Label *ngIf="name.errors.minlength" 
-                text="- Name field must be longer than 1 characters -"></Label>
+                text="- Поле Ім'я має мати не менше одного символа -"></Label>
     </StackLayout>
     <TextField [(ngModel)]="form.password"
                #password="ngModel"
-               hint="Password"
+               hint="Пароль"
                secure="true"
-               hint="Password"
                minlength="1" 
                required></TextField>
     <StackLayout *ngIf="password.errors && password.dirty && password.touched">
         <Label *ngIf="password.errors.required" 
-                text="- An password field is required -"></Label>
+                text="- Поле Пароль є обов'язковим -"></Label>
         <Label *ngIf="password.errors.minlength" 
-                text="- Password field must be longer than 1 characters -"></Label>
+                text="- Поле Пароль має мати не менше одного символа -"></Label>
     </StackLayout>
     <Button [nsRouterLink]="['']"
-            text="Register" 
+            text="Зареєструватись" 
             (tap)="onRegister()"
             class="btn-register"></Button>
 </StackLayout>

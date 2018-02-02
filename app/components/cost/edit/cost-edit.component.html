@@ -1,4 +1,4 @@
-<ActionBar title="Edit Cost" 
+<ActionBar title="Редагувати Витрату" 
            class="action-bar">
     <ActionItem ios.position="left" 
                 android.position="left" 
@@ -18,7 +18,7 @@
     <GridLayout class="row"
                 columns="80, *"
                 rows="50">
-        <Label text="Quantity"
+        <Label text="Витрата"
                col="0"></Label>
         <TextField [(ngModel)]="costForUpdate.quantity"
                    col="1"></TextField>
@@ -26,7 +26,7 @@
     <GridLayout class="row"
                 columns="80, *"
                 rows="50">
-        <Label text="Tag"
+        <Label text="Мітка"
                col="0"></Label>
         <TextField [(ngModel)]="costForUpdate.type"
                    col="1"></TextField>
@@ -34,7 +34,7 @@
     <GridLayout class="row"
                 columns="80, *"
                 verticalAlignment="center">
-        <Label text="Cost's Date"
+        <Label text="Дата витрати"
                col="0"></Label>  
         <DatePicker (loaded)="onDatePickerLoaded($event)" 
                     (dateChange)="onDateChange($event)"

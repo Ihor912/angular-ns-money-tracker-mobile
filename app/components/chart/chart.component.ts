@@ -30,10 +30,10 @@ export class ChartComponent {
 
     private initSegmentedBar() {
         let monthsChartsButton = new SegmentedBarItem();
-        monthsChartsButton.title = "Month's Statistics";
+        monthsChartsButton.title = "Статистика по місяцях";
         
         let typeChartsButton = new SegmentedBarItem();
-        typeChartsButton.title = "Cost Type Statistics";
+        typeChartsButton.title = "Статистика по типах витрат";
 
         this.barButtons = [monthsChartsButton, typeChartsButton];
        

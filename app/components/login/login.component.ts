@@ -25,8 +25,8 @@ export class LoginComponent {
         this.isLoading = true;
         firebase.login({
             type: firebase.LoginType.PASSWORD, 
-            email: this.form.email,  // 'ihor.khomiak1@test.com', 
-            password: this.form.password  // '123456'
+            email: this.form.email,
+            password: this.form.password
         })
         .then((user) => {
             this.isLoading = false;
