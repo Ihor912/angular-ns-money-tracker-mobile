@@ -47,7 +47,7 @@ export class CostDetailComponent implements OnInit {
         let costForUpdate = Object.assign({}, this.cost);
         costForUpdate.isFavorite = !this.cost.isFavorite;
         this.costService.updateCost(costForUpdate).then(result => {
-            this.cost.isFavorite = !this.cost.isFavorite;
+            this.cost.isFavorite = costForUpdate.isFavorite;
         });
     }
 

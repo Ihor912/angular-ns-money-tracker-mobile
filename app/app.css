@@ -1,5 +1,9 @@
 @import 'nativescript-theme-core/css/core.light.css';
 
+.font-awesome {
+    font-family: "FontAwesome", fontawesome-webfont;
+}
+
 .tag-item {
     vertical-align: middle;
     background-color: #7ada2f;
@@ -17,4 +21,8 @@
 .action-item {
     padding-right: 20;
     font-size: 16pt;
+}
+
+.action-icon {
+    font-size: 30pt;
 }

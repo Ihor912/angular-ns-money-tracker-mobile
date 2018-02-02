@@ -7,24 +7,30 @@
     </ActionItem>
     <ActionItem android.position="right" 
                 (tap)="logout()">
-        <Label text="Logout" 
-               class="action-item"></Label>
+        <Label text="&#xf08b;" 
+               class="font-awesome action-item action-icon"></Label>
     </ActionItem>
 </ActionBar>
 
 <StackLayout class="page"
              orientation="vertical">
     <GridLayout row="0" 
-                columns="*, 70" 
+                columns="*, 80" 
                 class="add-bar">
         <TextField #newCostTextField
                    keyboardType="number"
-                   hint="Enter a cost item" 
+                   hint="New Cost"
+                   fontSize="20"
                    col="0"></TextField>
-        <Label col="1"
-               text="Add"
-               (tap)="add()"
-               class="list-header-button"></Label>
+        <StackLayout col="1"
+                     height="100%"
+                     width="100%"
+                     verticalAlignment="center"
+                     (tap)="add()">
+            <Label text="&#xf067;"
+                   class="font-awesome list-header-button"
+                   marginRight="6%"></Label>
+        </StackLayout>
     </GridLayout>
     <list #list 
           [items]="costService.costs"

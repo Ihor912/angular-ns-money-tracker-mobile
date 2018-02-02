@@ -4,15 +4,15 @@
                 ios.systemIcon="2" 
                 ios.position="right"
                 android.position="left">
-        <Label text="Edit" 
-               class="action-item"></Label>
+        <Label text="&#xf14b;" 
+               class="font-awesome action-item action-icon"></Label>
     </ActionItem>
     <ActionItem (tap)="onDeleteButtonTap()"
                 ios.systemIcon="16" 
                 ios.position="right" 
                 android.position="right">
-        <Label text="Delete"
-               class="action-item"></Label>
+        <Label text="&#xf146;" 
+               class="font-awesome action-item action-icon"></Label>
     </ActionItem>
 </ActionBar>
 
@@ -27,9 +27,13 @@
     <Label [nsRouterLink]="['/cost-edit', cost.id]"
            class="tag-item small-tag-item"
            [text]="cost.type"></Label>
-
-    <Label class="favorite-label" 
-           [text]="cost.isFavorite === true ? 'Favorite' : 'Not Favorite'"
-           (tap)="onFavoriteTap()"></Label>
+    <StackLayout verticalAlignment="center"
+                 horizontalAlignment="center"
+                 (tap)="onFavoriteTap()">
+        <Label padding="20"
+               [text]="cost.isFavorite === true ? '\uf005' : '\uf02e'"
+               class="font-awesome"
+               fontSize="20"></Label>
+    </StackLayout>
                       
 </StackLayout>
