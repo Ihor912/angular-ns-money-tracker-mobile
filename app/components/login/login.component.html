@@ -1,48 +1,26 @@
 <StackLayout verticalAlignment="center" 
              class="container">
-    <Image src="res://brand_logo" 
-           horizontalAlignment="center"
-           width="170"
-           height="200"></Image>
-    <ActivityIndicator [busy]="isLoading" 
-                       [visibility]="isLoading ? 'visible' : 'collapse'" 
-                       horizontalAlignment="center" 
-                       verticalAlignment="center"></ActivityIndicator>
+    <Image src="res://brand_logo" class="brand-logo"></Image>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" 
+                       horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
     <StackLayout class="group">
-        <TextField #email="ngModel" 
-                   [(ngModel)]="form.email"
-                   hint="Ел. Пошта"
-                   keyboardType="email"
-                   autocorrect="false"
-                   minlength="1" 
-                   required></TextField>
+        <TextField #email="ngModel" [(ngModel)]="form.email" hint="Ел. Пошта"
+                   keyboardType="email" autocorrect="false" minlength="1" required></TextField>
         <StackLayout *ngIf="email.errors && email.dirty && email.touched">
-            <Label *ngIf="email.errors.required" 
-                    text="- Поле Ел. пошта є обов'язковим -"></Label>
-            <Label *ngIf="email.errors.minlength" 
-                    text="- Поле Ел. пошта має мати не менше одного символа -"></Label>
+            <Label *ngIf="email.errors.required" text="- Поле Ел. пошта є обов'язковим -"></Label>
+            <Label *ngIf="email.errors.minlength" text="- Поле Ел. пошта має мати не менше одного символа -"></Label>
         </StackLayout>
     </StackLayout>
     <StackLayout class="group">
-        <TextField #password="ngModel"
-                   [(ngModel)]="form.password"
-                   secure="true"
-                   hint="Password"
-                   minlength="1" 
-                   required></TextField>
+        <TextField #password="ngModel" [(ngModel)]="form.password" secure="true"
+                   hint="Password" minlength="1" required></TextField>
         <StackLayout *ngIf="password.errors && password.dirty && password.touched">
-            <Label *ngIf="password.errors.required" 
-                    text="- Поле Пароль є обов'язковим -"></Label>
-            <Label *ngIf="password.errors.minlength" 
-                    text="- Поле Пароль має мати не менше одного символа -"></Label>
+            <Label *ngIf="password.errors.required" text="- Поле Пароль є обов'язковим -"></Label>
+            <Label *ngIf="password.errors.minlength" text="- Поле Пароль має мати не менше одного символа -"></Label>
         </StackLayout>
     </StackLayout>
     <StackLayout class="group">
-        <Button text="Увійти" 
-                class="btn-login"
-                (tap)="login()"></Button>
-        <Label [nsRouterLink]="['/register']" 
-               text="Не маєш власного акаунта? Зареєструйся тут." 
-               class="text-center footnote"></Label>
+        <Button text="Увійти" class="btn-login" (tap)="login()"></Button>
+        <Label [nsRouterLink]="['/register']" text="Не маєш власного акаунта? Зареєструйся тут." class="text-center footnote"></Label>
     </StackLayout>
 </StackLayout>

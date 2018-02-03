@@ -1,13 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
 import { TextField } from 'ui/text-field';
 
-import { Cost } from '../../common/protocol';
-import { CostService } from '../../services/cost.service';
 import { Config } from '../../common/config';
-import { ListComponent } from '../../components/list/list.component';
+import { Cost } from '../../common/protocol';
 import { Utils } from '../../common/utils';
+import { ListComponent } from '../../components/list/list.component';
+import { CostService } from '../../services/cost.service';
 
 @Component({
     selector: "costs",
@@ -16,7 +16,7 @@ import { Utils } from '../../common/utils';
     styleUrls: ["./cost.component.css"]
 })
 export class CostsComponent implements OnInit {
-    @ViewChild("newCostTextField") newCostTextField: ElementRef;
+    @ViewChild("newCostInput") newCostInput: ElementRef;
     @ViewChild("list") list: ListComponent;
     
     private _dateRange = null;
@@ -29,7 +29,7 @@ export class CostsComponent implements OnInit {
 
     constructor(private router: RouterExtensions, private costService: CostService) { }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.reloadData();
     }
 
@@ -52,7 +52,7 @@ export class CostsComponent implements OnInit {
     }
 
     add() {
-        let textField = <TextField>this.newCostTextField.nativeElement;
+        let textField = <TextField>this.newCostInput.nativeElement;
         textField.dismissSoftInput();
 
         if (textField.text.trim() === "") {

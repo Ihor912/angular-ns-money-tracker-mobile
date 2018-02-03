@@ -39,6 +39,10 @@ export class ListComponent {
         // if(currentDate.toDateString() === itemDate.toDateString()) {
         //     return ("0" + itemDate.getHours()).slice(-2) + ":" + ("0" + itemDate.getMinutes()).slice(-2);
         // }
-        return Utils.dateToYMD(itemDate);
+        return Utils.dateToDMY(itemDate);
+    }
+
+    ngOnDestroy(): void {
+        this.pullToRefreshEvent.unsubscribe();
     }
 }

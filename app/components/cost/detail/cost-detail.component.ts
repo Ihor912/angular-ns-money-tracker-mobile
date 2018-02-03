@@ -15,11 +15,7 @@ import { CostService } from '../../../services/cost.service';
 export class CostDetailComponent implements OnInit {
     cost: Cost;
     
-    constructor(
-        private costService: CostService,
-        private route: ActivatedRoute,
-        private routerExtensions: RouterExtensions
-    ) { }
+    constructor(private costService: CostService, private route: ActivatedRoute, private routerExtensions: RouterExtensions) {}
 
     ngOnInit(): void {
         const id = this.route.snapshot.params["id"];

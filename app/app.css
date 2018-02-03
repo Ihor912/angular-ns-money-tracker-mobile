@@ -4,6 +4,20 @@
     font-family: "FontAwesome", fontawesome-webfont;
 }
 
+ActionBar, .action-bar {
+    background-color: #7ada2f;
+    color: aliceblue;
+}
+
+SegmentedBar {
+    background-color: #D3D3D3;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+}
+
 .tag-item {
     vertical-align: middle;
     background-color: #7ada2f;

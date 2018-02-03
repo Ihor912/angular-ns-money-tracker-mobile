@@ -1,52 +1,25 @@
-<StackLayout verticalAlignment="center" 
-             class="container">
-    <Image src="res://brand_logo" 
-           horizontalAlignment="center"
-           width="170"
-           height="200"></Image>
-    <ActivityIndicator [busy]="isLoading" 
-                       [visibility]="isLoading ? 'visible' : 'collapse'" 
-                       horizontalAlignment="center" 
-                       verticalAlignment="center"></ActivityIndicator>
-    <TextField [(ngModel)]="form.email"
-               #email="ngModel"
-               hint="Ел. пошта"
-               keyboardType="email"
-               autocorrect="false"
-               minlength="1" 
-               required></TextField>
+<StackLayout verticalAlignment="center" class="container">
+    <Image src="res://brand_logo" class="brand-logo"></Image>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" 
+                       horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+    <TextField [(ngModel)]="form.email" #email="ngModel" hint="Ел. пошта"
+               keyboardType="email" autocorrect="false" minlength="1" required></TextField>
     <StackLayout *ngIf="email.errors && email.dirty && email.touched">
-        <Label *ngIf="email.errors.required" 
-                text="- Поле Ел. пошта є обов'язковим -"></Label>
-        <Label *ngIf="email.errors.minlength" 
-                text="- Поле Ел. пошта має мати не менше одного символа -"></Label>
+        <Label *ngIf="email.errors.required" text="- Поле Ел. пошта є обов'язковим -"></Label>
+        <Label *ngIf="email.errors.minlength" text="- Поле Ел. пошта має мати не менше одного символа -"></Label>
     </StackLayout>
-    <TextField [(ngModel)]="form.name"
-               #name="ngModel"
-               hint="Ім'я"
-               autocorrect="false"
-               minlength="1" 
-               required></TextField>
+    <TextField [(ngModel)]="form.name" #name="ngModel" hint="Ім'я"
+               autocorrect="false" minlength="1" required></TextField>
     <StackLayout *ngIf="name.errors && name.dirty && name.touched">
-        <Label *ngIf="name.errors.required" 
-                text="- Поле Ім'я є обов'язковим -"></Label>
-        <Label *ngIf="name.errors.minlength" 
-                text="- Поле Ім'я має мати не менше одного символа -"></Label>
+        <Label *ngIf="name.errors.required" text="- Поле Ім'я є обов'язковим -"></Label>
+        <Label *ngIf="name.errors.minlength" text="- Поле Ім'я має мати не менше одного символа -"></Label>
     </StackLayout>
-    <TextField [(ngModel)]="form.password"
-               #password="ngModel"
-               hint="Пароль"
-               secure="true"
-               minlength="1" 
-               required></TextField>
+    <TextField [(ngModel)]="form.password" #password="ngModel" hint="Пароль"
+               secure="true" minlength="1" required></TextField>
     <StackLayout *ngIf="password.errors && password.dirty && password.touched">
-        <Label *ngIf="password.errors.required" 
-                text="- Поле Пароль є обов'язковим -"></Label>
-        <Label *ngIf="password.errors.minlength" 
-                text="- Поле Пароль має мати не менше одного символа -"></Label>
+        <Label *ngIf="password.errors.required" text="- Поле Пароль є обов'язковим -"></Label>
+        <Label *ngIf="password.errors.minlength" text="- Поле Пароль має мати не менше одного символа -"></Label>
     </StackLayout>
-    <Button [nsRouterLink]="['']"
-            text="Зареєструватись" 
-            (tap)="onRegister()"
+    <Button [nsRouterLink]="['']" text="Зареєструватись" (tap)="onRegister()"
             class="btn-register"></Button>
 </StackLayout>

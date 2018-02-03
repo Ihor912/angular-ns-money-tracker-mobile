@@ -1,38 +1,20 @@
-<ActionBar title="MTracker" 
-           class="action-bar">
-    <ActionItem android.position="right" 
-		[nsRouterLink]="['/budget']">
-        <Label text="Бюджет" 
-               class="action-item"></Label>
+<ActionBar title="MTracker" class="action-bar">
+    <ActionItem position="right" [nsRouterLink]="['/budget']">
+        <Label text="Бюджет" class="action-item"></Label>
     </ActionItem>
-    <ActionItem android.position="right" 
-                (tap)="logout()">
-        <Label text="&#xf08b;" 
-               class="font-awesome action-item action-icon"></Label>
+    <ActionItem position="right" (tap)="logout()">
+        <Label text="&#xf08b;" class="font-awesome action-item action-icon"></Label>
     </ActionItem>
 </ActionBar>
 
-<StackLayout class="page"
-             orientation="vertical">
-    <GridLayout row="0" 
-                columns="*, 80" 
-                class="add-bar">
-        <TextField #newCostTextField
-                   keyboardType="number"
-                   hint="Нова витрата"
-                   fontSize="20"
-                   col="0"></TextField>
-        <StackLayout col="1"
-                     height="100%"
-                     width="100%"
-                     verticalAlignment="center"
-                     (tap)="add()">
-            <Label text="&#xf067;"
-                   class="font-awesome list-header-button"
-                   marginRight="6%"></Label>
+<StackLayout class="page">
+    <GridLayout row="0" columns="*, 80" class="add-bar">
+        <TextField col="0" #newCostInput keyboardType="number" 
+                    hint="Нова витрата" fontSize="20"></TextField>
+        <StackLayout col="1" class="add-button" (tap)="add()">
+            <Label text="&#xf067;" class="font-awesome list-header-button" marginRight="6%"></Label>
         </StackLayout>
     </GridLayout>
-    <list #list 
-          [items]="costService.costs"
-          (pullToRefreshEvent)="pullToRefresh()"></list>
+
+    <list #list [items]="costService.costs" (pullToRefreshEvent)="pullToRefresh()"></list>
 </StackLayout>

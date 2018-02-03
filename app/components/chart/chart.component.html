@@ -1,44 +1,26 @@
 <SegmentedBar [items]="barButtons" 
-			  (selectedIndexChange)="onSelectedIndexChange($event)" 
-			  backgroundColor="#D3D3D3"></SegmentedBar>
+			  (selectedIndexChange)="onSegmentedBarSelectionChange($event)"></SegmentedBar>
 
-<PullToRefresh class="main-container"
-			   (refresh)="pullToRefresh($event)">
+<PullToRefresh class="main-container" (refresh)="pullToRefresh($event)">
 	<StackLayout padding="30">
-		<StackLayout visibility="{{ barButtonsSelectedIndex === 0 ? 'visible' : 'collapsed' }}">
-			<RadCartesianChart allowAnimation="true" seriesSelectionMode="none">
-				<CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-				<LinearAxis tkCartesianVerticalAxis></LinearAxis>
-				<BarSeries tkCartesianSeries
-							showLabels="true"
-						    seriesName="inbound"
-							[items]="cartesianProvider"
-							categoryProperty="changesMonth"
-							valueProperty="quantity"></BarSeries>
-				<Palette tkCartesianPalette 
-						 seriesName="inbound">
-					<PaletteEntry tkCartesianPaletteEntry 
-								  fillColor="#1da125" 
-								  strokeColor="Transparent"></PaletteEntry>
-				</Palette>
-			</RadCartesianChart>
-		</StackLayout>
-		<StackLayout visibility="{{ barButtonsSelectedIndex === 1 ? 'visible' : 'collapsed' }}">
-			<RadPieChart allowAnimation="true">
-				<PieSeries tkPieSeries
-							selectionMode="DataPoint" 
-							expandRadius="0.8" 
-							outerRadiusFactor="0.9" 
-							[items]="pieProvider"
-							valueProperty="quantity"
-							legendLabel="type"></PieSeries>
-				<RadLegendView tkPieLegend 
-								position="Right" 
-								title="Типи Витрат (грн)" 
-								offsetOrigin="TopRight" 
-								width="110" 
-								enableSelection="true"></RadLegendView>
-			</RadPieChart>
-		</StackLayout>
+		<RadCartesianChart visibility="{{ barButtonsSelectedIndex === 0 ? 'visible' : 'collapsed' }}" 
+						   allowAnimation="true" seriesSelectionMode="none">
+			<CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+			<LinearAxis tkCartesianVerticalAxis></LinearAxis>
+			<BarSeries tkCartesianSeries showLabels="true" seriesName="inbound"
+					   [items]="cartesianProvider" categoryProperty="changesMonth" valueProperty="quantity"></BarSeries>
+			<Palette tkCartesianPalette seriesName="inbound">
+				<PaletteEntry tkCartesianPaletteEntry fillColor="#1da125" strokeColor="Transparent"></PaletteEntry>
+			</Palette>
+		</RadCartesianChart>
+		
+		<RadPieChart visibility="{{ barButtonsSelectedIndex === 1 ? 'visible' : 'collapsed' }}" 
+						allowAnimation="true">
+			<PieSeries tkPieSeries selectionMode="DataPoint" expandRadius="0.8" 
+						outerRadiusFactor="0.9" [items]="pieProvider" valueProperty="quantity"
+						legendLabel="type"></PieSeries>
+			<RadLegendView tkPieLegend position="Right" title="Типи Витрат (грн)" 
+							offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+		</RadPieChart>
 	</StackLayout>
 </PullToRefresh>

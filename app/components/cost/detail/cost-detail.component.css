@@ -1,12 +1,12 @@
-ActionBar {
-    background-color: #7ada2f;
-    color: aliceblue;
-}
-
 .date-label {
     text-align: right;
     margin-left: 60%;
     vertical-align: middle;
     font-size: 16pt;
     padding-top: 5pt;
+}
+
+.favorite-label {
+    font-size: 20;
+    padding: 20;
 }

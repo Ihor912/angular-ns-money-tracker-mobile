@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { DatePicker } from 'ui/date-picker';
 import { RouterExtensions } from 'nativescript-angular';
 

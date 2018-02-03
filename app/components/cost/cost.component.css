@@ -1,8 +1,3 @@
-ActionBar {
-    background-color: #7ada2f;
-    color: aliceblue;
-}
-
 .list-header-button {
     text-align: center;
     vertical-align: middle;
@@ -13,4 +8,10 @@ ActionBar {
 
 .add-bar {
     height: 70;
+}
+
+.add-button {
+    height: 100%;
+    width: 100%;
+    vertical-align: center;
 }

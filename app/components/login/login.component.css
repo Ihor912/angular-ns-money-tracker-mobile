@@ -13,3 +13,9 @@
     color: #fff;
     margin-bottom: 10pt;
 }
+
+.brand-logo {
+    horizontal-alignment: center;
+    width: 170;
+    height: 200;
+}

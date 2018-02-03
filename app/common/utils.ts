@@ -1,11 +1,11 @@
 export class Utils {
 
-    public static dateToYMD(date) {
+    public static dateToDMY(date) {
         let strArray = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сеп', 'Вер', 'Жов', 'Лис', 'Гру'];
         let d = date.getDate();
         let m = strArray[date.getMonth()];
         let y = date.getFullYear();
-        return '' + (d <= 9 ? '0' + d : d) + ' ' + m + ' ' + y;
+        return (d <= 9 ? '0' + d : d) + ' ' + m + ' ' + y;
     }
 
     public static formatDateString(dateString: string): string {

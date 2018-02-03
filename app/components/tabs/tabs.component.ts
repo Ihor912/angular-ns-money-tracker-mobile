@@ -1,7 +1,8 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { isAndroid } from 'platform';
 import { SelectedIndexChangedEventData, TabView } from 'tns-core-modules/ui/tab-view';
-import { ActivatedRoute } from '@angular/router';
+
 import { ChartComponent } from '../../components/chart/chart.component';
 
 @Component({
@@ -12,8 +13,10 @@ import { ChartComponent } from '../../components/chart/chart.component';
 })
 export class TabsComponent {
     @Input() title: string;
+    
     @ViewChild("tabView") tabView: ElementRef;
     @ViewChild("chart") chart: ChartComponent;
+
     private dateRange = {};
 
     constructor(private router: ActivatedRoute) {

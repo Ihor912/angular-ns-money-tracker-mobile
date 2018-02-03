@@ -8,15 +8,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule, authProviders } from './app.routing';
 import { Config } from './common/config';
 import { BudgetComponent } from './components/budget/budget.component';
-import { BudgetModule } from './components/budget/budget.module';
 import { DateRangeComponent } from './components/date-range/date-range.component';
 import { ChartComponent } from './components/chart/chart.component';
-import { CostModule } from './components/cost/cost.module';
 import { CostsComponent } from './components/cost/costs.component';
 import { ListComponent } from './components/list/list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/login/register/register.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { BudgetService } from './services/budget.service';
+import { CostDetailComponent } from './components/cost/detail/cost-detail.component';
+import { CostEditComponent } from './components/cost/edit/cost-edit.component';
+import { CostService } from './services/cost.service';
 
 @NgModule({
     bootstrap: [
@@ -26,14 +28,14 @@ import { TabsComponent } from './components/tabs/tabs.component';
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        NativeScriptUIChartModule,
-        CostModule,
-        BudgetModule
+        NativeScriptUIChartModule
     ],
     declarations: [
         AppComponent,
         TabsComponent,
         CostsComponent,
+        CostDetailComponent,
+        CostEditComponent,
         LoginComponent,
         RegisterComponent,
         DateRangeComponent,
@@ -43,7 +45,9 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ],
     providers: [
         authProviders,
-        Config
+        Config,
+        CostService,
+        BudgetService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

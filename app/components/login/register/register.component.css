@@ -10,3 +10,9 @@
     margin-bottom: 7pt;
     margin-top: 10pt;
 }
+
+.brand-logo {
+    horizontal-alignment: center;
+    width: 170;
+    height: 200;
+}

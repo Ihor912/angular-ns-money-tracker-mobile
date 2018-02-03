@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
+import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
 
 import { CostService } from '../../services/cost.service';
 
@@ -62,7 +62,7 @@ export class ChartComponent {
         this.cartesianProvider = new ObservableArray(this.objectToArray(costMonths));
     }
 
-    private onSelectedIndexChange(args) {
+    private onSegmentedBarSelectionChange(args) {
         let segmetedBar = <SegmentedBar>args.object;
         this.barButtonsSelectedIndex = segmetedBar.selectedIndex;
         if(segmetedBar.selectedIndex === 0) {

@@ -1,44 +1,24 @@
-<ActionBar title="Бюджет" 
-           class="action-bar">
-    <ActionItem *ngIf="state == 'read'"
-                (tap)="onEditButtonTap()"
-                ios.systemIcon="2" 
-                ios.position="right"
-                android.position="left">
-        <Label text="&#xf044;" 
-               class="font-awesome action-item action-icon"></Label>
+<ActionBar title="Бюджет" class="action-bar">
+    <ActionItem *ngIf="state == 'read'" (tap)="onEditButtonTap()" position="left">
+        <Label text="&#xf044;" class="font-awesome action-item action-icon"></Label>
     </ActionItem>
-    <ActionItem *ngIf="state == 'edit'"
-                ios.position="right" 
-                android.position="right" 
-                (tap)="onSaveButtonTap()">
-        <Label text="&#xf14a;" 
-               class="font-awesome action-item action-icon"></Label>
+    <ActionItem *ngIf="state == 'edit'" position="right" (tap)="onSaveButtonTap()">
+        <Label text="&#xf14a;" class="font-awesome action-item action-icon"></Label>
     </ActionItem>
-    <NavigationButton text="Повернутись"
-                      android.systemIcon="ic_menu_back"
-                      (tap)="onBackTap()"
+    <NavigationButton text="Повернутись" android.systemIcon="ic_menu_back" (tap)="onBackTap()"
                       class="btn-back"></NavigationButton>
 </ActionBar>
 
-<StackLayout orientation="vertical"
-             class="container">
-        <StackLayout *ngIf="state == 'read'"
-                     orientation="horizontal">
-                <Label text="Бюджет на місяць - "
-                       class="info-label"></Label>
-                <Label [text]="budgetService.budget"
-                       class="value-label"></Label>
-        </StackLayout>
+<StackLayout class="container">
+	<StackLayout *ngIf="state == 'read'" orientation="horizontal">
+		<Label text="Бюджет на місяць - " class="info-label"></Label>
+		<Label [text]="budgetService.budget" class="value-label"></Label>
+	</StackLayout>
 
-        <StackLayout *ngIf="state == 'edit'"
-                     orientation="vertical">
-                <Label text="Бюджет на місяць:"
-                       class="info-edit-label"></Label>
-                <TextField [text]="budgetService.budget"
-                           keyboardType="number"
-                           #editBudgetTextField></TextField>
-        </StackLayout>
+	<StackLayout *ngIf="state == 'edit'">
+		<Label text="Бюджет на місяць:" class="info-edit-label"></Label>
+		<TextField #editInput [text]="budgetService.budget" keyboardType="number"></TextField>
+	</StackLayout>
 </StackLayout>
 
  

@@ -3,8 +3,6 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import firebase = require('nativescript-plugin-firebase');
 import { Page } from 'ui/page';
 
-import { Config } from '../../../common/config';
-
 @Component({
     moduleId: module.id,
     selector: "register",

@@ -1,59 +1,29 @@
 <AbsoluteLayout class="main-container">
 	<StackLayout class="main-container">
-		<GridLayout height="15"
-					columns="*, 80, 100, 60">
-			<Label col="0"
-				   text="Витрати"
-				   textAlignment="center"
-				   class="header-label"></Label>
-			<Label col="1"
-				   text="Дата"
-				   textAlignment="center"
-				   class="header-label"></Label>
-			<Label col="2"
-				   text="Мітка"
-				   textAlignment="center"
-				   class="header-label"></Label>
-			<Label col="3"
-				   text="Виділені"
-				   textAlignment="center"
-				   class="header-label"></Label>
+		<GridLayout height="15" columns="*, 80, 100, 60">
+			<Label col="0" text="Витрати" class="header-label"></Label>
+			<Label col="1" text="Дата" class="header-label"></Label>
+			<Label col="2" text="Мітка" class="header-label"></Label>
+			<Label col="3" text="Виділені" class="header-label"></Label>
 		</GridLayout>
-		<PullToRefresh (refresh)="reloadList($event)" 
-                   class="main-container">
-			<ListView [items]="items"
-					#list
-					class="list-group">
+		<PullToRefresh (refresh)="reloadList($event)" class="main-container">
+			<ListView [items]="items" #list class="list-group">
 				<ng-template let-item="item">
-					<GridLayout row="0" 
-								[nsRouterLink]="['/cost', item.id]"
-								columns="*, 80, 100, 60">
-						<Label [text]="item.quantity"
-								class="list-group-item"
-								col="0"></Label>
-						<Label [text]="getDateValue(item)"
-								class="list-group-item-date"
-								col="1"></Label>             
-						<Label [text]="item.type"
-								class="tag-item"
-								col="2"></Label>
-						<StackLayout col="3"
-									 verticalAlignment="center"
-									 horizontalAlignment="center">
+					<GridLayout row="0" [nsRouterLink]="['/cost', item.id]" columns="*, 80, 100, 60">
+						<Label col="0" [text]="item.quantity" class="list-group-item"></Label>
+						<Label col="1" [text]="getDateValue(item)" class="list-group-item-date"></Label>             
+						<Label col="2" [text]="item.type" class="tag-item"></Label>
+						<StackLayout col="3" verticalAlignment="center" horizontalAlignment="center">
 							<Label [text]="item.isFavorite === true ? '\uf005' : '\uf02e'"
-									class="font-awesome"
-									fontSize="20"></Label> 
+									class="font-awesome" fontSize="20"></Label> 
 						</StackLayout>                
 					</GridLayout>
 				</ng-template>
 			</ListView>
 		</PullToRefresh>
 	</StackLayout>
-    <StackLayout verticalAlignment="center" 
-                 class="indicator-container">
-        <ActivityIndicator [busy]="isLoading" 
-                            [visibility]="isLoading ? 'visible' : 'collapse'" 
-                            horizontalAlignment="center" 
-                            verticalAlignment="center"></ActivityIndicator>
+    <StackLayout verticalAlignment="center" class="indicator-container">
+        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" 
+                            horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
     </StackLayout>
 </AbsoluteLayout>

@@ -1,43 +1,23 @@
-<ActionBar title="Редагувати Витрату" 
-           class="action-bar">
-    <ActionItem ios.position="left" 
-                android.position="left" 
-                (tap)="onCancelButtonTap()">
-        <Label text="&#xf191;" 
-               class="font-awesome action-item action-icon"></Label>
+<ActionBar title="Редагувати Витрату" class="action-bar">
+    <ActionItem position="left" (tap)="onCancelButtonTap()">
+        <Label text="&#xf191;" class="font-awesome action-item action-icon"></Label>
     </ActionItem>
-    <ActionItem ios.position="right" 
-                android.position="right" 
-                (tap)="onDoneButtonTap()">
-        <Label text="&#xf14a;" 
-               class="font-awesome action-item action-icon"></Label>
+    <ActionItem android.position="right" (tap)="onDoneButtonTap()">
+        <Label text="&#xf14a;" class="font-awesome action-item action-icon"></Label>
     </ActionItem>
 </ActionBar>
 
-<StackLayout orientation="vertical">
-    <GridLayout class="row"
-                columns="80, *"
-                rows="50">
-        <Label text="Витрата"
-               col="0"></Label>
-        <TextField [(ngModel)]="costForUpdate.quantity"
-                   col="1"></TextField>
+<StackLayout>
+    <GridLayout class="row" columns="80, *" rows="50">
+        <Label col="0" text="Витрата"></Label>
+        <TextField col="1" [(ngModel)]="costForUpdate.quantity"></TextField>
     </GridLayout>
-    <GridLayout class="row"
-                columns="80, *"
-                rows="50">
-        <Label text="Мітка"
-               col="0"></Label>
-        <TextField [(ngModel)]="costForUpdate.type"
-                   col="1"></TextField>
+    <GridLayout class="row" columns="80, *" rows="50">
+        <Label col="0" text="Мітка"></Label>
+        <TextField col="1" [(ngModel)]="costForUpdate.type"></TextField>
     </GridLayout>
-    <GridLayout class="row"
-                columns="80, *"
-                verticalAlignment="center">
-        <Label text="Дата витрати"
-               col="0"></Label>  
-        <DatePicker (loaded)="onDatePickerLoaded($event)" 
-                    (dateChange)="onDateChange($event)"
-                    col="1"></DatePicker>
+    <GridLayout class="row" columns="80, *" verticalAlignment="center">
+        <Label col="0" text="Дата витрати"></Label>  
+        <DatePicker col="1" (loaded)="onDatePickerLoaded($event)"  (dateChange)="onDateChange($event)"></DatePicker>
     </GridLayout>
 </StackLayout>

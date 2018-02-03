@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular/router';
-
-import { CostService } from '../../../services/cost.service';
-import { Cost } from '../../../common/protocol';
 import { DatePicker } from 'tns-core-modules/ui/date-picker/date-picker';
+
+import { Cost } from '../../../common/protocol';
 import { Utils } from '../../../common/utils';
+import { CostService } from '../../../services/cost.service';
 
 @Component({
     selector: "cost-edit",
@@ -16,14 +16,9 @@ import { Utils } from '../../../common/utils';
 export class CostEditComponent implements OnInit {
     cost: Cost;
     costForUpdate: Cost;
-    rollbackCost: Cost;
     costDate: string;
 
-    constructor(
-        private costService: CostService,
-        private route: ActivatedRoute,
-        private routerExtensions: RouterExtensions
-    ) { }
+    constructor(private costService: CostService, private route: ActivatedRoute, private routerExtensions: RouterExtensions) {}
 
     ngOnInit(): void {
         const id = this.route.snapshot.params["id"];
